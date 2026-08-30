@@ -1,8 +1,8 @@
 # Progress Tracker: ACME Global Salary Management
 
 ## Current Status
-- **Current Phase**: Phase 5: Testing & CI Readiness (Ready to start)
-- **Current Goal**: Write comprehensive unit tests for FX conversion, medians, and schemas, along with TestClient integration tests for all CRUD, filtering, CSV export, and analytics endpoints.
+- **Current Phase**: Phase 6: Performance & Documentation (Ready to start)
+- **Current Goal**: Verify sub-200ms query latency across the 10,000-record dataset and prepare full architectural README documentation.
 
 ---
 
@@ -27,8 +27,8 @@
 
 
 ### Phase 5: Testing & CI Readiness
-- [ ] Commit 1: `tests(unit): add unit tests for fx conversion, median calculations, and pydantic validation`
-- [ ] Commit 2: `tests(integration): add testclient integration tests for crud, filters, exports, and analytics`
+- [x] Commit 1: `tests(unit): add unit tests for fx conversion, median calculations, and pydantic validation`
+- [x] Commit 2: `tests(integration): add testclient integration tests for crud, filters, exports, and analytics`
 
 ### Phase 6: Performance & Documentation
 - [ ] Commit 1: `chore(perf): configure cors middleware, openapi tags, and benchmark <200ms latency verification`
