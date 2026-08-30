@@ -6,6 +6,7 @@ import { useCurrency } from '@/hooks/use-currency';
 import type { Currency } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from './theme-toggle';
+import { AcmeLogo } from './acme-logo';
 
 interface GlobalHeaderProps {
   onAddEmployee?: () => void;
@@ -46,12 +47,10 @@ export function GlobalHeader({ onAddEmployee, onImportCsv }: GlobalHeaderProps) 
       <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left: Branding & Status Indicator */}
         <div className="flex items-center gap-3 sm:gap-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-primary text-primary-foreground font-bold text-xs tracking-wider shadow-xs">
-              A
-            </div>
-            <h1 className="text-base sm:text-lg font-semibold tracking-tight text-foreground m-0">
-              ACME Compensation
+          <div className="flex items-center gap-2.5">
+            <AcmeLogo size={28} />
+            <h1 className="text-base sm:text-lg font-bold tracking-tight text-foreground m-0">
+              ACME <span className="font-semibold text-muted-foreground">Compensation</span>
             </h1>
           </div>
 
