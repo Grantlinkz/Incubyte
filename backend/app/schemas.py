@@ -1,17 +1,20 @@
 from datetime import datetime
+import re
 from typing import Generic, TypeVar
-from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.constants.fx_rates import SUPPORTED_CURRENCIES
 
 T = TypeVar("T")
+
+EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
 
 class EmployeeBase(BaseModel):
     """Base schema containing core employee attributes."""
 
     name: str = Field(min_length=1, max_length=255, description="Full name of the employee")
-    email: EmailStr = Field(description="Unique business email address")
+    email: str = Field(min_length=3, max_length=255, description="Unique business email address")
     job_title: str = Field(min_length=1, max_length=255, description="Job title / role")
     department: str = Field(min_length=1, max_length=100, description="Department name")
     country: str = Field(min_length=1, max_length=100, description="Operating country")
@@ -20,6 +23,15 @@ class EmployeeBase(BaseModel):
     bonus: float = Field(default=0.0, ge=0, description="Annual bonus in local currency (cannot be negative)")
     currency: str = Field(min_length=3, max_length=10, description="ISO 3-letter currency code (e.g. USD, EUR, GBP, INR)")
     status: str = Field(default="Active", max_length=50, description="Current employment status (e.g. Active, On Leave, Terminated)")
+
+    @field_validator("email")
+    @classmethod
+    def validate_email(cls, v: str) -> str:
+        """Ensure email matches standard email format."""
+        email_clean = v.strip().lower()
+        if not EMAIL_REGEX.match(email_clean):
+            raise ValueError(f"Invalid email address format: '{v}'")
+        return email_clean
 
     @field_validator("currency")
     @classmethod
@@ -43,7 +55,7 @@ class EmployeeUpdate(BaseModel):
     """Schema for updating an existing employee (all fields optional)."""
 
     name: str | None = Field(default=None, min_length=1, max_length=255)
-    email: EmailStr | None = Field(default=None)
+    email: str | None = Field(default=None, min_length=3, max_length=255)
     job_title: str | None = Field(default=None, min_length=1, max_length=255)
     department: str | None = Field(default=None, min_length=1, max_length=100)
     country: str | None = Field(default=None, min_length=1, max_length=100)
@@ -52,6 +64,17 @@ class EmployeeUpdate(BaseModel):
     bonus: float | None = Field(default=None, ge=0)
     currency: str | None = Field(default=None, min_length=3, max_length=10)
     status: str | None = Field(default=None, max_length=50)
+
+    @field_validator("email")
+    @classmethod
+    def validate_email_optional(cls, v: str | None) -> str | None:
+        """Ensure email matches standard email format if provided."""
+        if v is None:
+            return None
+        email_clean = v.strip().lower()
+        if not EMAIL_REGEX.match(email_clean):
+            raise ValueError(f"Invalid email address format: '{v}'")
+        return email_clean
 
     @field_validator("currency")
     @classmethod
