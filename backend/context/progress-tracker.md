@@ -1,8 +1,8 @@
 # Progress Tracker: ACME Global Salary Management
 
 ## Current Status
-- **Current Phase**: Phase 2: Batch Seeding Script (Ready to start)
-- **Current Goal**: Create static FX conversion rates matrix and implement high-performance 10k employee bulk seeder with Faker.
+- **Current Phase**: Phase 3: Core Service, CRUD & CSV Export APIs (Ready to start)
+- **Current Goal**: Define Pydantic schemas, implement EmployeeService (CRUD, soft-delete, filtering, sorting, streaming CSV), and expose API routes.
 
 ---
 
@@ -13,8 +13,8 @@
 - [x] Commit 2: `feat(db): implement employee model with soft-delete and composite indexing`
 
 ### Phase 2: Batch Seeding Script
-- [ ] Commit 1: `feat(constants): define static fx conversion rates lookup matrix`
-- [ ] Commit 2: `feat(seed): implement high-performance 10k employee bulk seeder with faker`
+- [x] Commit 1: `feat(constants): define static fx conversion rates lookup matrix`
+- [x] Commit 2: `feat(seed): implement high-performance 10k employee bulk seeder with faker`
 
 ### Phase 3: Core Service, CRUD & CSV Export APIs
 - [ ] Commit 1: `feat(schemas): define pydantic request response models with positive bounds and currency validation`
