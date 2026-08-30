@@ -34,6 +34,7 @@ export function CsvImportModal({ isOpen, onClose }: CsvImportModalProps) {
   const [fileName, setFileName] = useState<string | null>(null);
   const [parsedRows, setParsedRows] = useState<ParsedRowResult[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
+  const [isParsing, setIsParsing] = useState(false);
 
   const bulkImportMutation = useBulkImportEmployees();
 
