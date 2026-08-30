@@ -1,10 +1,10 @@
 # Progress Tracker: ACME Global Salary Management
 
 ## Current Phase
-- **Phase 2: Frontend Implementation** (Ready to begin Step 1)
+- **Phase 1: Completed** (Ready for Phase 2: Analytics & Data Grid Implementation)
 
 ## Current Goal
-- Update and align all context documentation, project guidelines, and agent master specs with the ACME Global Compensation Assessment requirements.
+- Implement Top Section Analytics (`kpi-metrics-strip.tsx`, `compensation-charts.tsx`) and Server-Driven Employee Data Grid.
 
 ---
 
@@ -15,10 +15,16 @@
 - [x] FastAPI REST contract defined (Analytics, Employees, CRUD, Batch Import, Export).
 - [x] Context documents updated (`project-overview.md`, `architecture.md`, `ui-context.md`, `code-standards.md`, `ai-workflow-rules.md`).
 
-### Phase 1: API Client, Types & Validation Layer
-- [ ] Base Axios client setup with FastAPI contract (`lib/api-client.ts`).
-- [ ] TypeScript interfaces & Zod validation schemas matching backend Pydantic models (`lib/validations/employee.ts`).
-- [ ] MSW handlers for mock backend responses.
+### Phase 1: API Client, Types & Global Header Control Bar
+- [x] TypeScript domain interfaces and contracts (`lib/types.ts`).
+- [x] Zod validation schemas for employees, CSV rows, and query parameters (`lib/validations/employee.ts`).
+- [x] Base Axios client configured with FastAPI endpoints and error interceptors (`lib/api-client.ts`).
+- [x] Currency formatting, math, and salary diff helpers (`lib/utils.ts`).
+- [x] Deterministic mock data generator (10,000 records) and analytics calculation engine (`lib/mock-data.ts`).
+- [x] Base currency URL state synchronization hook (`hooks/use-currency.ts`).
+- [x] Theme system with high-contrast Dark Mode (`acme_global_1`) and clean Light Mode (`acme_global_2`) (`app/globals.css`, `components/layout/theme-toggle.tsx`).
+- [x] Global Header & Control Bar with branding, live status badge, currency dropdown, and action buttons (`components/layout/global-header.tsx`).
+- [x] TanStack Query, NextThemes, and Sonner providers integration (`app/providers.tsx`, `app/layout.tsx`).
 
 ### Phase 2: Frontend Implementation
 - [ ] **Step 1**: Top Section Analytics & KPI Visualizations (`kpi-metrics-strip.tsx`, `compensation-charts.tsx`).
@@ -36,9 +42,10 @@
 ## Architecture Decisions
 1. **Server-Driven Data Grid**: Configured TanStack Table with manual pagination, sorting, and filtering to scale smoothly to 10,000+ employee records without frontend performance degradation.
 2. **Dual Currency Display**: Retaining both local native compensation and converted base currency (`salary_usd`) ensures international pay transparency and accurate aggregation.
-3. **URL State Synchronization**: Keeping search queries, faceted filters, page size, and sorting state in URL search parameters ensures high shareability and smooth browser navigation.
+3. **URL State Synchronization**: Keeping search queries, faceted filters, page size, currency, and sorting state in URL search parameters ensures high shareability and smooth browser navigation.
+4. **Deterministic Mock Layer**: In-memory 10,000 record PRNG generator enables instant offline testing and accurate multi-currency analytics calculations matching backend FastAPI logic.
 
 ---
 
 ## Session Notes
-- Context files in `context/` and root `Context.md` have been updated with complete details from the assessment PDFs and design specifications.
+- Phase 1 foundation successfully established and verified against design mockups and TypeScript standards.
