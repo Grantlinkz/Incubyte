@@ -58,6 +58,9 @@
 }
 
 :root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
   /* Light Mode (acme_global_2: Clean Corporate Light) */
   --background: #f8f9ff;
   --foreground: #0b1c30;
