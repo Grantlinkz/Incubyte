@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.database import Base, engine
 import app.models  # noqa: F401 - Register models with Base metadata
+from app.routers.employees import router as employees_router
 
 
 @asynccontextmanager
@@ -33,6 +34,9 @@ app.add_middleware(
     allow_headers=["*"],
     expose_headers=["Content-Disposition"],
 )
+
+# Register API Routers
+app.include_router(employees_router)
 
 
 @app.get("/health", tags=["Health"])
