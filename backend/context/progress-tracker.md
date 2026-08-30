@@ -1,8 +1,8 @@
 # Progress Tracker: ACME Global Salary Management
 
 ## Current Status
-- **Current Phase**: Phase 3: Core Service, CRUD & CSV Export APIs (Ready to start)
-- **Current Goal**: Define Pydantic schemas, implement EmployeeService (CRUD, soft-delete, filtering, sorting, streaming CSV), and expose API routes.
+- **Current Phase**: Phase 4: Analytics & Aggregations (Ready to start)
+- **Current Goal**: Implement SQL aggregation service for executive KPIs, medians, departmental breakdowns, and country salary distributions.
 
 ---
 
@@ -17,9 +17,9 @@
 - [x] Commit 2: `feat(seed): implement high-performance 10k employee bulk seeder with faker`
 
 ### Phase 3: Core Service, CRUD & CSV Export APIs
-- [ ] Commit 1: `feat(schemas): define pydantic request response models with positive bounds and currency validation`
-- [ ] Commit 2: `feat(service): implement employee service for crud, soft-delete, advanced filtering, and sorting`
-- [ ] Commit 3: `feat(api): expose employee crud, paginated list, and streaming csv export endpoints`
+- [x] Commit 1: `feat(schemas): define pydantic request response models with positive bounds and currency validation`
+- [x] Commit 2: `feat(service): implement employee service for crud, soft-delete, advanced filtering, and sorting`
+- [x] Commit 3: `feat(api): expose employee crud, paginated list, and streaming csv export endpoints`
 
 ### Phase 4: Analytics & Aggregations
 - [ ] Commit 1: `feat(analytics-service): implement sql aggregations, medians, and geographic breakdowns`
