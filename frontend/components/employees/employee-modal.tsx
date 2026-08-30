@@ -209,8 +209,11 @@ export function EmployeeModal({ isOpen, onClose, employee }: EmployeeModalProps)
 
               {/* Full Name */}
               <div className="space-y-1">
-                <label className="text-xs font-medium text-foreground">Full Name *</label>
+                <label htmlFor="emp-name" className="text-xs font-medium text-foreground">
+                  Full Name *
+                </label>
                 <Input
+                  id="emp-name"
                   {...register('name')}
                   placeholder="e.g. Sarah Jenkins"
                   className="bg-background border-border text-sm h-9"
@@ -220,8 +223,11 @@ export function EmployeeModal({ isOpen, onClose, employee }: EmployeeModalProps)
 
               {/* Email Address */}
               <div className="space-y-1">
-                <label className="text-xs font-medium text-foreground">Work Email *</label>
+                <label htmlFor="emp-email" className="text-xs font-medium text-foreground">
+                  Work Email *
+                </label>
                 <Input
+                  id="emp-email"
                   type="email"
                   {...register('email')}
                   placeholder="s.jenkins@acmeglobal.com"
@@ -233,8 +239,11 @@ export function EmployeeModal({ isOpen, onClose, employee }: EmployeeModalProps)
               {/* Job Title & Department */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-xs font-medium text-foreground">Job Title *</label>
+                  <label htmlFor="emp-job-title" className="text-xs font-medium text-foreground">
+                    Job Title *
+                  </label>
                   <Input
+                    id="emp-job-title"
                     {...register('job_title')}
                     placeholder="e.g. Lead Engineer"
                     className="bg-background border-border text-sm h-9"
@@ -386,8 +395,11 @@ export function EmployeeModal({ isOpen, onClose, employee }: EmployeeModalProps)
               {/* Base Salary & Bonus */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-xs font-medium text-foreground">Annual Base Salary *</label>
+                  <label htmlFor="emp-base-salary" className="text-xs font-medium text-foreground">
+                    Annual Base Salary *
+                  </label>
                   <Input
+                    id="emp-base-salary"
                     type="number"
                     step="500"
                     {...register('base_salary')}
@@ -400,8 +412,11 @@ export function EmployeeModal({ isOpen, onClose, employee }: EmployeeModalProps)
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-medium text-foreground">Target Bonus</label>
+                  <label htmlFor="emp-bonus" className="text-xs font-medium text-foreground">
+                    Target Bonus
+                  </label>
                   <Input
+                    id="emp-bonus"
                     type="number"
                     step="500"
                     {...register('bonus')}

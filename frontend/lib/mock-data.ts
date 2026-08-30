@@ -85,7 +85,7 @@ function createPRNG(seed: number) {
 }
 
 let mockEmployeesCache: Employee[] | null = null;
-let mockSalaryHistoryCache: Map<string, SalaryHistoryItem[]> = new Map();
+const mockSalaryHistoryCache: Map<string, SalaryHistoryItem[]> = new Map();
 
 export function getDeterministicMockEmployees(totalCount = 10000): Employee[] {
   if (mockEmployeesCache && mockEmployeesCache.length === totalCount) {

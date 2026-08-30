@@ -11,7 +11,6 @@ import {
   FileSpreadsheet,
   TrendingDown,
   TrendingUp,
-  User,
   X,
 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -232,7 +231,7 @@ export function SalaryHistorySheet({ isOpen, onClose, employee }: SalaryHistoryS
                           </div>
 
                           <div className="pt-2 border-t border-border/60 flex items-center justify-between text-[11px] text-muted-foreground">
-                            <span className="truncate italic">"{item.reason}"</span>
+                            <span className="truncate italic">&quot;{item.reason}&quot;</span>
                             <span className="font-mono text-[10px] shrink-0 text-muted-foreground/80">
                               {item.changed_by}
                             </span>

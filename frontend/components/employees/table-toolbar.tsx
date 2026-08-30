@@ -21,7 +21,14 @@ export function TableToolbar({
   totalRecords = 0,
   isLoading = false,
 }: TableToolbarProps) {
+  const [prevSearchProp, setPrevSearchProp] = useState(filters.search || '');
   const [searchValue, setSearchValue] = useState(filters.search || '');
+
+  // Adjust state if prop changed externally
+  if (prevSearchProp !== (filters.search || '')) {
+    setPrevSearchProp(filters.search || '');
+    setSearchValue(filters.search || '');
+  }
 
   // Debounced search input (300ms)
   useEffect(() => {
@@ -33,11 +40,6 @@ export function TableToolbar({
 
     return () => clearTimeout(timer);
   }, [searchValue, filters.search, onFilterChange]);
-
-  // Synchronize internal search state if URL changes externally
-  useEffect(() => {
-    setSearchValue(filters.search || '');
-  }, [filters.search]);
 
   // Unique country list from LOCATIONS
   const countryOptions = Array.from(new Set(LOCATIONS.map((l) => l.country)));

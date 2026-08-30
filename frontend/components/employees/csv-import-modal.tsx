@@ -12,10 +12,8 @@ import {
   CheckCircle2,
   Download,
   FileSpreadsheet,
-  FileText,
   Loader2,
   UploadCloud,
-  X,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -35,7 +33,6 @@ export function CsvImportModal({ isOpen, onClose }: CsvImportModalProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState<string | null>(null);
   const [parsedRows, setParsedRows] = useState<ParsedRowResult[]>([]);
-  const [isParsing, setIsParsing] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
 
   const bulkImportMutation = useBulkImportEmployees();
@@ -321,7 +318,7 @@ export function CsvImportModal({ isOpen, onClose }: CsvImportModalProps) {
                   <div>
                     <h4 className="text-sm font-bold text-foreground">Validation Preview</h4>
                     <p className="text-xs text-muted-foreground">
-                      Reviewing {parsedRows.length} parsed records from '{fileName}'
+                      Reviewing {parsedRows.length} parsed records from &apos;{fileName}&apos;
                     </p>
                   </div>
 
