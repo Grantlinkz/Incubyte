@@ -2,34 +2,37 @@
 
 import type { AnalyticsSummary, Currency } from '@/lib/types';
 import { formatCurrency } from '@/lib/utils';
-import { Skeleton } from '@/components/ui/skeleton';
+import { KpiStripSkeleton } from '@/components/ui/skeleton-states';
+import { QueryErrorFallback } from '@/components/ui/query-error-fallback';
 import { Banknote, TrendingUp, BarChart3, SlidersHorizontal, Users } from 'lucide-react';
 
 interface KpiMetricsStripProps {
   summary?: AnalyticsSummary;
   currency: Currency;
   isLoading?: boolean;
+  isError?: boolean;
+  onRetry?: () => void;
 }
 
-export function KpiMetricsStrip({ summary, currency, isLoading }: KpiMetricsStripProps) {
-  if (isLoading || !summary) {
+export function KpiMetricsStrip({
+  summary,
+  currency,
+  isLoading,
+  isError,
+  onRetry,
+}: KpiMetricsStripProps) {
+  if (isError) {
     return (
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {[1, 2, 3, 4].map((i) => (
-          <div
-            key={i}
-            className="rounded-lg border border-border bg-card p-4 shadow-xs space-y-3"
-          >
-            <div className="flex items-center justify-between">
-              <Skeleton className="h-3 w-28" />
-              <Skeleton className="h-4 w-4 rounded-full" />
-            </div>
-            <Skeleton className="h-8 w-36" />
-            <Skeleton className="h-3 w-48" />
-          </div>
-        ))}
-      </div>
+      <QueryErrorFallback
+        title="Unable to load payroll analytics summary"
+        message="Could not aggregate global payroll metrics for the selected base currency."
+        onRetry={onRetry}
+      />
     );
+  }
+
+  if (isLoading || !summary) {
+    return <KpiStripSkeleton />;
   }
 
   // Format Total Payroll compact ($142.5M)

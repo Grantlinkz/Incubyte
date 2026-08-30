@@ -11,6 +11,8 @@ import type { RowSelectionState } from '@tanstack/table-core';
 import type { Employee, EmployeeFilterParams, PaginatedResponse } from '@/lib/types';
 import { formatCurrency, getCountryFlag, getOfficeCode } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
+import { QueryErrorFallback } from '@/components/ui/query-error-fallback';
+import { EmptyState } from '@/components/ui/empty-state';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,14 +30,16 @@ import {
   Trash2,
   ChevronLeft,
   ChevronRight,
-  UserX,
 } from 'lucide-react';
 
 interface EmployeeDataTableProps {
   data?: PaginatedResponse<Employee>;
   isLoading?: boolean;
+  isError?: boolean;
+  onRetry?: () => void;
   filters: EmployeeFilterParams;
   onFilterChange: (newFilters: Partial<EmployeeFilterParams>) => void;
+  onResetFilters?: () => void;
   onEditEmployee?: (employee: Employee) => void;
   onViewHistory?: (employee: Employee) => void;
   onDeleteEmployee?: (employee: Employee) => void;
@@ -44,8 +48,11 @@ interface EmployeeDataTableProps {
 export function EmployeeDataTable({
   data,
   isLoading = false,
+  isError = false,
+  onRetry,
   filters,
   onFilterChange,
+  onResetFilters,
   onEditEmployee,
   onViewHistory,
   onDeleteEmployee,
@@ -444,7 +451,17 @@ export function EmployeeDataTable({
           </thead>
 
           <tbody className="divide-y divide-border text-xs text-foreground">
-            {isLoading ? (
+            {isError ? (
+              <tr>
+                <td colSpan={8} className="p-6">
+                  <QueryErrorFallback
+                    title="Failed to load employee records"
+                    message="An error occurred while communicating with the employee database. Please retry or adjust filter parameters."
+                    onRetry={onRetry}
+                  />
+                </td>
+              </tr>
+            ) : isLoading ? (
               // Skeleton rows during loading
               Array.from({ length: 8 }).map((_, idx) => (
                 <tr key={`skeleton-${idx}`} className="h-[48px]">
@@ -480,14 +497,13 @@ export function EmployeeDataTable({
             ) : employees.length === 0 ? (
               // Empty State
               <tr>
-                <td colSpan={8} className="py-12 text-center">
-                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-muted text-muted-foreground mb-3">
-                    <UserX className="h-5 w-5" />
-                  </div>
-                  <h4 className="text-sm font-semibold text-foreground">No employees found</h4>
-                  <p className="mt-1 text-xs text-muted-foreground max-w-sm mx-auto">
-                    Try refining your search keyword or clearing the active department/country filters.
-                  </p>
+                <td colSpan={8} className="py-6">
+                  <EmptyState
+                    title="No employees found"
+                    description="No matching records found for the active search term or faceted filters."
+                    onReset={onResetFilters}
+                    actionLabel="Clear Filters"
+                  />
                 </td>
               </tr>
             ) : (

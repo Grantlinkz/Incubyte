@@ -60,12 +60,34 @@ function DashboardContent() {
   }, [searchParams]);
 
   // Fetch real-time / normalized analytics data for selected base currency
-  const { data: summary, isLoading: isSummaryLoading } = useAnalyticsSummary(currency);
-  const { data: departments, isLoading: isDeptsLoading } = useDepartmentAnalytics(currency);
-  const { data: countries, isLoading: isCountriesLoading } = useCountryAnalytics(currency);
+  const {
+    data: summary,
+    isLoading: isSummaryLoading,
+    isError: isSummaryError,
+    refetch: refetchSummary,
+  } = useAnalyticsSummary(currency);
+
+  const {
+    data: departments,
+    isLoading: isDeptsLoading,
+    isError: isDeptsError,
+    refetch: refetchDepts,
+  } = useDepartmentAnalytics(currency);
+
+  const {
+    data: countries,
+    isLoading: isCountriesLoading,
+    isError: isCountriesError,
+    refetch: refetchCountries,
+  } = useCountryAnalytics(currency);
 
   // Fetch server-driven paginated employees matching active filters
-  const { data: employeeData, isLoading: isEmployeesLoading } = useEmployees(filterParams);
+  const {
+    data: employeeData,
+    isLoading: isEmployeesLoading,
+    isError: isEmployeesError,
+    refetch: refetchEmployees,
+  } = useEmployees(filterParams);
 
   // Bidirectional URL search param updater
   const handleFilterChange = (newFilters: Partial<EmployeeFilterParams>) => {
@@ -150,6 +172,8 @@ function DashboardContent() {
             summary={summary}
             currency={currency}
             isLoading={isSummaryLoading}
+            isError={isSummaryError}
+            onRetry={() => refetchSummary()}
           />
 
           {/* Analytical Visualizations Row (Departmental & Geographic) */}
@@ -158,6 +182,11 @@ function DashboardContent() {
             countries={countries}
             currency={currency}
             isLoading={isDeptsLoading || isCountriesLoading}
+            isError={isDeptsError || isCountriesError}
+            onRetry={() => {
+              refetchDepts();
+              refetchCountries();
+            }}
           />
         </section>
 
@@ -187,8 +216,11 @@ function DashboardContent() {
           <EmployeeDataTable
             data={employeeData}
             isLoading={isEmployeesLoading}
+            isError={isEmployeesError}
+            onRetry={() => refetchEmployees()}
             filters={filterParams}
             onFilterChange={handleFilterChange}
+            onResetFilters={handleResetFilters}
             onEditEmployee={handleEditEmployee}
             onViewHistory={handleViewHistory}
             onDeleteEmployee={handleDeleteEmployee}

@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import type { CountryAnalytics, Currency, DepartmentAnalytics } from '@/lib/types';
 import { formatCurrency } from '@/lib/utils';
-import { Skeleton } from '@/components/ui/skeleton';
+import { CompensationChartsSkeleton } from '@/components/ui/skeleton-states';
+import { QueryErrorFallback } from '@/components/ui/query-error-fallback';
 import { Building2, Globe2, BarChart2, List } from 'lucide-react';
 
 interface CompensationChartsProps {
@@ -11,6 +12,8 @@ interface CompensationChartsProps {
   countries?: CountryAnalytics[];
   currency: Currency;
   isLoading?: boolean;
+  isError?: boolean;
+  onRetry?: () => void;
 }
 
 export function CompensationCharts({
@@ -18,46 +21,23 @@ export function CompensationCharts({
   countries = [],
   currency,
   isLoading,
+  isError,
+  onRetry,
 }: CompensationChartsProps) {
   const [activeDeptTab, setActiveDeptTab] = useState<'bars' | 'ranked'>('bars');
 
-  if (isLoading) {
+  if (isError) {
     return (
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <div className="rounded-lg border border-border bg-card p-5 h-[420px] flex flex-col space-y-4">
-          <div className="flex justify-between items-center">
-            <Skeleton className="h-5 w-40" />
-            <Skeleton className="h-4 w-16" />
-          </div>
-          <div className="space-y-3 flex-1 pt-4">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="flex items-center gap-3">
-                <Skeleton className="h-4 w-20" />
-                <Skeleton className="h-6 flex-1 rounded" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-lg border border-border bg-card p-5 h-[420px] flex flex-col space-y-4">
-          <div className="flex justify-between items-center">
-            <Skeleton className="h-5 w-48" />
-            <Skeleton className="h-4 w-20" />
-          </div>
-          <div className="space-y-4 flex-1 pt-4">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="space-y-1.5">
-                <div className="flex justify-between">
-                  <Skeleton className="h-4 w-24" />
-                  <Skeleton className="h-4 w-28" />
-                </div>
-                <Skeleton className="h-2.5 w-full rounded-full" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <QueryErrorFallback
+        title="Unable to render compensation charts"
+        message="Failed to retrieve departmental and geographic payroll distributions."
+        onRetry={onRetry}
+      />
     );
+  }
+
+  if (isLoading) {
+    return <CompensationChartsSkeleton />;
   }
 
   // Max department spend for relative scaling
