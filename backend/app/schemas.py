@@ -110,3 +110,51 @@ class PaginatedResponse(BaseModel, Generic[T]):
     page: int
     page_size: int
     total_pages: int
+
+
+# ==========================================
+# Analytics & Compensation Reporting Schemas
+# ==========================================
+
+
+class CurrencyDistributionItem(BaseModel):
+    """Distribution of salaries by native currency."""
+
+    currency: str = Field(description="ISO 3-letter currency code")
+    count: int = Field(description="Number of employees paid in this currency")
+    percentage: float = Field(description="Percentage of active workforce paid in this currency")
+
+
+class AnalyticsSummaryResponse(BaseModel):
+    """Executive KPI summary of organization-wide compensation."""
+
+    total_payroll_usd: float = Field(description="Total annual payroll in USD")
+    average_salary_usd: float = Field(description="Average employee salary in USD")
+    median_salary_usd: float = Field(description="Median employee salary in USD")
+    total_active_employees: int = Field(description="Total count of active non-deleted employees")
+    currency_distribution: list[CurrencyDistributionItem] = Field(
+        description="Breakdown of workforce compensation by currency"
+    )
+
+
+class DepartmentAnalyticsItem(BaseModel):
+    """Compensation and headcount breakdown for a single department."""
+
+    department: str = Field(description="Department name")
+    headcount: int = Field(description="Number of active employees in department")
+    total_payroll_usd: float = Field(description="Total annual payroll for department in USD")
+    average_salary_usd: float = Field(description="Average salary in department in USD")
+    min_salary_usd: float = Field(description="Lowest salary in department in USD")
+    max_salary_usd: float = Field(description="Highest salary in department in USD")
+
+
+class CountryAnalyticsItem(BaseModel):
+    """Compensation and headcount breakdown for a single country / region."""
+
+    country: str = Field(description="Country / region name")
+    headcount: int = Field(description="Number of active employees in country")
+    total_payroll_usd: float = Field(description="Total annual payroll in country in USD")
+    average_salary_usd: float = Field(description="Average salary in country in USD")
+    min_salary_usd: float = Field(description="Lowest salary in country in USD")
+    max_salary_usd: float = Field(description="Highest salary in country in USD")
+
