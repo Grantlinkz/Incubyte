@@ -115,3 +115,60 @@ export function formatDiffPercentage(percentage: number): string {
   const prefix = percentage > 0 ? '+' : '';
   return `${prefix}${percentage.toFixed(1)}%`;
 }
+
+/**
+ * Returns regional flag emoji for a country name
+ */
+export function getCountryFlag(country: string): string {
+  switch (country.toLowerCase()) {
+    case 'united states':
+    case 'usa':
+    case 'us':
+      return '🇺🇸';
+    case 'united kingdom':
+    case 'uk':
+      return '🇬🇧';
+    case 'germany':
+      return '🇩🇪';
+    case 'canada':
+      return '🇨🇦';
+    case 'nigeria':
+      return '🇳🇬';
+    case 'singapore':
+      return '🇸🇬';
+    case 'australia':
+      return '🇦🇺';
+    case 'japan':
+      return '🇯🇵';
+    case 'spain':
+      return '🇪🇸';
+    case 'france':
+      return '🇫🇷';
+    default:
+      return '🌐';
+  }
+}
+
+/**
+ * Returns regional office code (AMER-01, EMEA-02, etc.) based on location
+ */
+export function getOfficeCode(country: string, city?: string): string {
+  const c = country.toLowerCase();
+  if (c.includes('state') || c === 'usa' || c === 'us') {
+    if (city?.includes('San Francisco')) return 'AMER-01';
+    if (city?.includes('New York')) return 'AMER-02';
+    return 'AMER-03';
+  }
+  if (c.includes('kingdom') || c === 'uk') return 'EMEA-01';
+  if (c.includes('germany')) {
+    if (city?.includes('Berlin')) return 'EMEA-02';
+    return 'EMEA-03';
+  }
+  if (c.includes('canada')) return 'AMER-04';
+  if (c.includes('nigeria')) return 'EMEA-04';
+  if (c.includes('singapore')) return 'APAC-01';
+  if (c.includes('australia')) return 'APAC-02';
+  if (c.includes('japan')) return 'APAC-03';
+  return 'GLBL-01';
+}
+
