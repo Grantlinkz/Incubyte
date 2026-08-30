@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useMemo } from 'react';
+import { Suspense, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { GlobalHeader } from '@/components/layout/global-header';
 import { useCurrency } from '@/hooks/use-currency';
@@ -14,6 +14,10 @@ import { KpiMetricsStrip } from '@/components/dashboard/kpi-metrics-strip';
 import { CompensationCharts } from '@/components/dashboard/compensation-charts';
 import { TableToolbar } from '@/components/employees/table-toolbar';
 import { EmployeeDataTable } from '@/components/employees/employee-data-table';
+import { EmployeeModal } from '@/components/employees/employee-modal';
+import { DeleteDialog } from '@/components/employees/delete-dialog';
+import { SalaryHistorySheet } from '@/components/employees/salary-history-sheet';
+import { CsvImportModal } from '@/components/employees/csv-import-modal';
 import type { Employee, EmployeeFilterParams, EmployeeStatus, EmploymentType } from '@/lib/types';
 import { toast } from 'sonner';
 
@@ -22,6 +26,13 @@ function DashboardContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { currency } = useCurrency();
+
+  // Modal & Overlay State Management
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
+  const [deletingEmployee, setDeletingEmployee] = useState<Employee | null>(null);
+  const [historyEmployee, setHistoryEmployee] = useState<Employee | null>(null);
+  const [isCsvModalOpen, setIsCsvModalOpen] = useState(false);
 
   // Parse table filter params from URL search parameters
   const filterParams: EmployeeFilterParams = useMemo(() => {
@@ -87,23 +98,23 @@ function DashboardContent() {
   };
 
   const handleAddEmployee = () => {
-    toast.info('Add Employee modal will be connected in Phase 2 Step 3');
+    setIsAddModalOpen(true);
   };
 
   const handleImportCsv = () => {
-    toast.info('CSV Import modal will be connected in Phase 2 Step 3');
+    setIsCsvModalOpen(true);
   };
 
   const handleEditEmployee = (emp: Employee) => {
-    toast.info(`Editing ${emp.name} (Modal will be connected in Phase 2 Step 3)`);
+    setEditingEmployee(emp);
   };
 
   const handleViewHistory = (emp: Employee) => {
-    toast.info(`Viewing salary history for ${emp.name} (Slide-over will be connected in Phase 2 Step 3)`);
+    setHistoryEmployee(emp);
   };
 
   const handleDeleteEmployee = (emp: Employee) => {
-    toast.info(`Delete confirmation for ${emp.name} (Dialog will be connected in Phase 2 Step 3)`);
+    setDeletingEmployee(emp);
   };
 
   return (
@@ -184,6 +195,40 @@ function DashboardContent() {
           />
         </section>
       </main>
+
+      {/* 3. Interactive Modals & Workflow Overlays */}
+      {/* Add Employee Modal */}
+      <EmployeeModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+      />
+
+      {/* Edit Employee Modal */}
+      <EmployeeModal
+        isOpen={!!editingEmployee}
+        employee={editingEmployee}
+        onClose={() => setEditingEmployee(null)}
+      />
+
+      {/* Delete Confirmation Dialog */}
+      <DeleteDialog
+        isOpen={!!deletingEmployee}
+        employee={deletingEmployee}
+        onClose={() => setDeletingEmployee(null)}
+      />
+
+      {/* Salary History Slide-Over Drawer */}
+      <SalaryHistorySheet
+        isOpen={!!historyEmployee}
+        employee={historyEmployee}
+        onClose={() => setHistoryEmployee(null)}
+      />
+
+      {/* Batch CSV Import Modal */}
+      <CsvImportModal
+        isOpen={isCsvModalOpen}
+        onClose={() => setIsCsvModalOpen(false)}
+      />
     </div>
   );
 }
@@ -204,3 +249,4 @@ export default function HomePage() {
     </Suspense>
   );
 }
+

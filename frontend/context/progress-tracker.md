@@ -1,10 +1,10 @@
 # Progress Tracker: ACME Global Salary Management
 
 ## Current Phase
-- **Phase 2: In Progress** (Step 1 & Step 2 Completed; Ready for Step 3: Interactive Modals & Workflow Overlays)
+- **Phase 2: In Progress** (Step 1, Step 2 & Step 3 Completed; Ready for Step 4: Loading Skeletons, Error Boundaries, and Polish)
 
 ## Current Goal
-- Implement Interactive Modals & Workflow Overlays (`employee-modal.tsx` with salary diff preview, `delete-dialog.tsx`, `salary-history-sheet.tsx`, `csv-import-modal.tsx`).
+- Implement Loading Skeletons, Error Boundaries, and Sonner Toast Feedback Polish.
 
 ---
 
@@ -29,7 +29,7 @@
 ### Phase 2: Frontend Implementation
 - [x] **Step 1**: Top Section Analytics & KPI Visualizations (`kpi-metrics-strip.tsx`, `compensation-charts.tsx`).
 - [x] **Step 2**: Server-Driven Employee Data Grid (`table-toolbar.tsx`, `employee-data-table.tsx` with TanStack Table).
-- [ ] **Step 3**: Interactive Modals & Workflow Overlays (`employee-modal.tsx` with salary diff preview, `delete-dialog.tsx`, `salary-history-sheet.tsx`, `csv-import-modal.tsx`).
+- [x] **Step 3**: Interactive Modals & Workflow Overlays (`employee-modal.tsx` with salary diff preview, `delete-dialog.tsx`, `salary-history-sheet.tsx`, `csv-import-modal.tsx`).
 - [ ] **Step 4**: Loading Skeletons, Error Boundaries, and Sonner Toast Feedback.
 
 ### Phase 3: Verification, Polish & Deployment
@@ -44,8 +44,10 @@
 2. **Dual Currency Display**: Retaining both local native compensation and converted base currency (`salary_usd`) ensures international pay transparency and accurate aggregation.
 3. **URL State Synchronization**: Keeping search queries, faceted filters, page size, currency, and sorting state in URL search parameters ensures high shareability and smooth browser navigation.
 4. **Deterministic Mock Layer**: In-memory 10,000 record PRNG generator enables instant offline testing and accurate multi-currency analytics calculations matching backend FastAPI logic.
+5. **Interactive Workflows & Diff Calculations**: Real-time salary diff card in `EmployeeModal` dynamically contrasts current vs proposed base salaries with formatted percentage change indicators; salary history slide-over tracks compensation adjustments chronologically.
 
 ---
 
 ## Session Notes
-- Phase 1 foundation successfully established and verified against design mockups and TypeScript standards.
+- Phase 2 Step 3 completed: Integrated Employee Modal (Add/Edit), Delete Confirmation Dialog, Salary History Slide-Over Sheet, and Batch CSV Ingestion Modal with live query cache invalidation.
+
