@@ -1,8 +1,14 @@
 'use client';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type { Employee, EmployeeFilterParams, PaginatedResponse } from '@/lib/types';
-import { getDeterministicMockEmployees, queryMockEmployees } from '@/lib/mock-data';
+import type { Employee, EmployeeFilterParams, PaginatedResponse, SalaryHistoryItem } from '@/lib/types';
+import {
+  getDeterministicMockEmployees,
+  getMockSalaryHistory,
+  queryMockEmployees,
+  recordSalaryAdjustment,
+  bulkImportMockEmployees,
+} from '@/lib/mock-data';
 import { apiClient } from '@/lib/api-client';
 import { toast } from 'sonner';
 
@@ -25,6 +31,26 @@ export function useEmployees(params: EmployeeFilterParams = {}) {
     },
     placeholderData: (previousData) => previousData,
     staleTime: 30_000,
+  });
+}
+
+/**
+ * Fetch salary adjustment audit trail for an employee
+ */
+export function useSalaryHistory(employeeId?: string) {
+  return useQuery<SalaryHistoryItem[]>({
+    queryKey: ['salary-history', employeeId],
+    queryFn: async () => {
+      if (!employeeId) return [];
+      try {
+        const response = await apiClient.get<SalaryHistoryItem[]>(`/employees/${employeeId}/salary-history`);
+        return response.data;
+      } catch {
+        return getMockSalaryHistory(employeeId);
+      }
+    },
+    enabled: !!employeeId,
+    staleTime: 10_000,
   });
 }
 
@@ -142,7 +168,17 @@ export function useUpdateEmployee() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Partial<Employee> }) => {
+    mutationFn: async ({
+      id,
+      data,
+      previousSalary,
+      reason,
+    }: {
+      id: string;
+      data: Partial<Employee>;
+      previousSalary?: number;
+      reason?: string;
+    }) => {
       try {
         const res = await apiClient.put<Employee>(`/employees/${id}`, data);
         return res.data;
@@ -151,15 +187,30 @@ export function useUpdateEmployee() {
         const mockEmps = getDeterministicMockEmployees();
         const idx = mockEmps.findIndex((e) => e.id === id);
         if (idx !== -1) {
-          mockEmps[idx] = { ...mockEmps[idx], ...data, updated_at: new Date().toISOString() };
+          const oldRecord = mockEmps[idx];
+          const oldBaseSalary = previousSalary !== undefined ? previousSalary : oldRecord.base_salary;
+          const newBaseSalary = data.base_salary !== undefined ? data.base_salary : oldRecord.base_salary;
+
+          if (newBaseSalary !== oldBaseSalary) {
+            recordSalaryAdjustment(
+              id,
+              oldBaseSalary,
+              newBaseSalary,
+              data.currency || oldRecord.currency,
+              reason || 'Compensation Adjustment'
+            );
+          }
+
+          mockEmps[idx] = { ...oldRecord, ...data, updated_at: new Date().toISOString() };
           return mockEmps[idx];
         }
         throw new Error('Employee not found in local records');
       }
     },
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['employees'] });
       queryClient.invalidateQueries({ queryKey: ['analytics'] });
+      queryClient.invalidateQueries({ queryKey: ['salary-history', variables.id] });
       toast.success('Employee updated successfully');
     },
     onError: (err: Error) => {
@@ -199,3 +250,34 @@ export function useDeleteEmployee() {
     },
   });
 }
+
+/**
+ * Mutation hook to bulk import employee records
+ */
+export function useBulkImportEmployees() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (employees: Omit<Employee, 'id' | 'created_at' | 'updated_at'>[]) => {
+      try {
+        const res = await apiClient.post<{ success_count: number }>('/employees/bulk-import', {
+          employees,
+        });
+        return res.data;
+      } catch {
+        // Mock fallback
+        const result = bulkImportMockEmployees(employees);
+        return { success_count: result.successCount };
+      }
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['employees'] });
+      queryClient.invalidateQueries({ queryKey: ['analytics'] });
+      toast.success(`Successfully imported ${data.success_count} employee records`);
+    },
+    onError: (err: Error) => {
+      toast.error(`Bulk import failed: ${err.message}`);
+    },
+  });
+}
+

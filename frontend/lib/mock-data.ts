@@ -296,15 +296,16 @@ export function getDeterministicMockEmployees(totalCount = 10000): Employee[] {
     if (employment_type === 'Part-time') baseRaw = Math.round(baseRaw * 0.55);
 
     let localBaseSalary = baseRaw;
-    if (loc.currency === 'NGN') {
+    const locCurr: string = loc.currency;
+    if (locCurr === 'NGN') {
       localBaseSalary = Math.round((baseRaw * 1000) / 7.5);
-    } else if (loc.currency === 'JPY') {
+    } else if (locCurr === 'JPY') {
       localBaseSalary = Math.round(baseRaw * 140);
-    } else if (loc.currency === 'GBP') {
+    } else if (locCurr === 'GBP') {
       localBaseSalary = Math.round(baseRaw * 0.78);
-    } else if (loc.currency === 'EUR') {
+    } else if (locCurr === 'EUR') {
       localBaseSalary = Math.round(baseRaw * 0.92);
-    } else if (loc.currency === 'CAD' || loc.currency === 'AUD') {
+    } else if (locCurr === 'CAD' || locCurr === 'AUD') {
       localBaseSalary = Math.round(baseRaw * 1.35);
     }
 
@@ -581,3 +582,61 @@ export function getMockSalaryHistory(employeeId: string): SalaryHistoryItem[] {
   mockSalaryHistoryCache.set(employeeId, history);
   return history;
 }
+
+/**
+ * Record a new salary adjustment to audit history
+ */
+export function recordSalaryAdjustment(
+  employeeId: string,
+  previousSalary: number,
+  newSalary: number,
+  currency: string,
+  reason = 'Compensation Adjustment'
+): void {
+  const history = getMockSalaryHistory(employeeId);
+  const diff = newSalary - previousSalary;
+  const pct = previousSalary > 0 ? Number(((diff / previousSalary) * 100).toFixed(1)) : 0;
+
+  const newItem: SalaryHistoryItem = {
+    id: `HIST-${employeeId}-${Date.now()}`,
+    employee_id: employeeId,
+    previous_salary: previousSalary,
+    new_salary: newSalary,
+    change_date: new Date().toISOString().slice(0, 10),
+    reason,
+    changed_by: 'HR Manager (Active Session)',
+    diff_amount: diff,
+    diff_percentage: pct,
+    currency,
+  };
+
+  mockSalaryHistoryCache.set(employeeId, [newItem, ...history]);
+}
+
+/**
+ * Bulk import employee records into mock memory store
+ */
+export function bulkImportMockEmployees(
+  newRecords: Omit<Employee, 'id' | 'created_at' | 'updated_at'>[]
+): { successCount: number; employees: Employee[] } {
+  const employees = getDeterministicMockEmployees();
+  const created: Employee[] = [];
+
+  newRecords.forEach((rec, idx) => {
+    const newId = `EMP-${String(10000 + employees.length + idx + 1).padStart(5, '0')}`;
+    const fullEmp: Employee = {
+      ...rec,
+      id: newId,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
+    employees.unshift(fullEmp);
+    created.push(fullEmp);
+  });
+
+  return {
+    successCount: created.length,
+    employees: created,
+  };
+}
+

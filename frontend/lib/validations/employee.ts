@@ -14,7 +14,7 @@ export const employeeFormSchema = z.object({
   city: z.string().trim().min(1, 'City is required'),
   currency: z.string().trim().min(1, 'Currency is required'),
   base_salary: z.coerce.number().positive('Base salary must be greater than 0'),
-  bonus: z.coerce.number().min(0, 'Bonus cannot be negative').default(0),
+  bonus: z.coerce.number().min(0, 'Bonus cannot be negative'),
   employment_type: z.enum(EMPLOYMENT_TYPES, {
     errorMap: () => ({ message: 'Please select a valid employment type' }),
   }),
