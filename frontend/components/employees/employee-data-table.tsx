@@ -2,12 +2,12 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import {
-  useReactTable,
+  useLegacyTable as useReactTable,
   getCoreRowModel,
-  flexRender,
-  type ColumnDef,
-  type SortingState,
-} from '@tanstack/react-table';
+  type LegacyColumnDef as ColumnDef,
+} from '@tanstack/react-table/legacy';
+import { flexRender } from '@tanstack/react-table';
+import type { RowSelectionState } from '@tanstack/table-core';
 import type { Employee, EmployeeFilterParams, PaginatedResponse } from '@/lib/types';
 import { formatCurrency, getCountryFlag, getOfficeCode } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -50,19 +50,13 @@ export function EmployeeDataTable({
   onViewHistory,
   onDeleteEmployee,
 }: EmployeeDataTableProps) {
-  const [rowSelection, setRowSelection] = useState<Record<string, boolean>>({});
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const employees = data?.items || [];
   const total = data?.total || 0;
   const page = data?.page || 1;
   const limit = data?.limit || 25;
   const totalPages = data?.total_pages || 1;
-
-  // Sorting state synced with filters
-  const sorting: SortingState = useMemo(() => {
-    if (!filters.sort_by) return [];
-    return [{ id: filters.sort_by, desc: filters.sort_order === 'desc' }];
-  }, [filters.sort_by, filters.sort_order]);
 
   const handleSort = useCallback(
     (columnId: string) => {
@@ -330,13 +324,8 @@ export function EmployeeDataTable({
           return (
             <div className="flex justify-end">
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    className="p-1 rounded-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                    title="Employee Actions"
-                  >
-                    <MoreVertical className="h-4 w-4" />
-                  </button>
+                <DropdownMenuTrigger className="p-1 rounded-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer outline-none">
+                  <MoreVertical className="h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48 text-xs">
                   <DropdownMenuItem
@@ -378,7 +367,6 @@ export function EmployeeDataTable({
     columns,
     state: {
       rowSelection,
-      sorting,
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
