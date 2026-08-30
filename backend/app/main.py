@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.database import Base, engine
 import app.models  # noqa: F401 - Register models with Base metadata
+from app.routers.analytics import router as analytics_router
 from app.routers.employees import router as employees_router
 
 
@@ -37,6 +38,8 @@ app.add_middleware(
 
 # Register API Routers
 app.include_router(employees_router)
+app.include_router(analytics_router)
+
 
 
 @app.get("/health", tags=["Health"])

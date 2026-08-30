@@ -1,8 +1,8 @@
 # Progress Tracker: ACME Global Salary Management
 
 ## Current Status
-- **Current Phase**: Phase 4: Analytics & Aggregations (Ready to start)
-- **Current Goal**: Implement SQL aggregation service for executive KPIs, medians, departmental breakdowns, and country salary distributions.
+- **Current Phase**: Phase 5: Testing & CI Readiness (Ready to start)
+- **Current Goal**: Write comprehensive unit tests for FX conversion, medians, and schemas, along with TestClient integration tests for all CRUD, filtering, CSV export, and analytics endpoints.
 
 ---
 
@@ -22,8 +22,9 @@
 - [x] Commit 3: `feat(api): expose employee crud, paginated list, and streaming csv export endpoints`
 
 ### Phase 4: Analytics & Aggregations
-- [ ] Commit 1: `feat(analytics-service): implement sql aggregations, medians, and geographic breakdowns`
-- [ ] Commit 2: `feat(analytics-api): expose kpi summary, department, and country analytics endpoints`
+- [x] Commit 1: `feat(analytics-service): implement sql aggregations, medians, and geographic breakdowns`
+- [x] Commit 2: `feat(analytics-api): expose kpi summary, department, and country analytics endpoints`
+
 
 ### Phase 5: Testing & CI Readiness
 - [ ] Commit 1: `tests(unit): add unit tests for fx conversion, median calculations, and pydantic validation`
