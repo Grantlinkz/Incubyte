@@ -1,16 +1,16 @@
 # Progress Tracker: ACME Global Salary Management
 
 ## Current Status
-- **Current Phase**: Phase 1: Setup & Data Layer (Ready to start)
-- **Current Goal**: Set up FastAPI structure, SQLite WAL database configuration, and `Employee` SQLAlchemy model with composite indexing.
+- **Current Phase**: Phase 2: Batch Seeding Script (Ready to start)
+- **Current Goal**: Create static FX conversion rates matrix and implement high-performance 10k employee bulk seeder with Faker.
 
 ---
 
 ## Phase Roadmap & Atomic Commit Milestones (Min. 2 Commits Per Phase)
 
 ### Phase 1: Setup & Data Layer
-- [ ] Commit 1: `chore(setup): initialize fastapi app structure, pydantic settings config, and sqlite wal connection`
-- [ ] Commit 2: `feat(db): implement employee model with soft-delete and composite indexing`
+- [x] Commit 1: `chore(setup): initialize fastapi app structure, pydantic settings config, and sqlite wal connection`
+- [x] Commit 2: `feat(db): implement employee model with soft-delete and composite indexing`
 
 ### Phase 2: Batch Seeding Script
 - [ ] Commit 1: `feat(constants): define static fx conversion rates lookup matrix`
