@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ACME Global - Delete Employee</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0f172a",
+                        "surface-container": "#1e293b",
+                        "surface-container-high": "#1c2b3c",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001a42",
+                        "surface-bright": "#334155",
+                        "on-background": "#d4e4fa",
+                        "on-surface": "#d4e4fa",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#002113",
+                        "primary": "#bec6e0",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-low": "#0d1c2d",
+                        "inverse-primary": "#565e74",
+                        "outline": "#334155",
+                        "primary-container": "#0f172a",
+                        "secondary": "#adc6ff",
+                        "on-secondary-container": "#e6ecff",
+                        "secondary-fixed": "#d8e2ff",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#0566d9",
+                        "on-primary-container": "#798098",
+                        "surface-container-highest": "#273647",
+                        "background": "#051424",
+                        "tertiary-container": "#001c10",
+                        "surface-tint": "#bec6e0",
+                        "on-primary": "#283044",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "surface-variant": "#273647",
+                        "inverse-surface": "#d4e4fa",
+                        "inverse-on-surface": "#233143",
+                        "outline-variant": "#45464d",
+                        "on-surface-variant": "#c6c6cd",
+                        "on-tertiary-container": "#009365",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary": "#4edea3",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-container-lowest": "#010f1f",
+                        "surface-dim": "#051424",
+                        "on-error": "#690005",
+                        "on-secondary": "#002e6a",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary": "#003824",
+                        "tertiary-fixed-dim": "#4edea3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "margin": "24px",
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "xl": "40px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "display": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0f172a; color: #d4e4fa; }
+        .backdrop-blur-strong { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col overflow-hidden">
+<!-- Background App Interface (Blurred/Dimmed) -->
+<div class="fixed inset-0 z-0 pointer-events-none opacity-50 select-none flex flex-col">
+<!-- Mock TopNav -->
+<header class="fixed top-0 left-0 w-full z-10 flex justify-between items-center px-margin h-16 bg-surface border-b border-outline">
+<div class="flex items-center gap-xl">
+<span class="text-headline-md font-headline-md font-bold text-on-surface">ACME Global</span>
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Directory</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Employees</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-white text-surface-container font-label-md text-label-md px-md py-sm rounded">Add Employee</button>
+</div>
+</header>
+<!-- Mock Content -->
+<main class="flex-1 mt-16 px-margin py-lg max-w-[1440px] w-full mx-auto">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Employee Directory</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage global workforce identities and access.</p>
+</div>
+</div>
+<!-- Mock Table -->
+<div class="bg-surface-container rounded-lg border border-outline overflow-hidden">
+<div class="grid grid-cols-5 px-md py-sm bg-surface-bright border-b border-outline">
+<div class="col-span-2 font-label-md text-label-md text-on-surface-variant uppercase">Name</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase">Role</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase">Department</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase text-right">Actions</div>
+</div>
+<div class="grid grid-cols-5 px-md py-md bg-surface border-b border-outline items-center">
+<div class="col-span-2 flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-bright"></div>
+<div>
+<div class="font-body-md text-body-md font-medium text-on-surface">Sarah Jenkins</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">s.jenkins@acmeglobal.com</div>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface">Sr. Engineer</div>
+<div class="font-body-sm text-body-sm text-on-surface">Engineering</div>
+<div class="flex justify-end gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">edit</span>
+<span class="material-symbols-outlined text-error">delete</span>
+</div>
+</div>
+<!-- Highlighted mock row for deletion context -->
+<div class="grid grid-cols-5 px-md py-md bg-surface-container-high border-b border-outline items-center">
+<div class="col-span-2 flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-bright"></div>
+<div>
+<div class="font-body-md text-body-md font-medium text-on-surface">Marcus Vance</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">m.vance@acmeglobal.com</div>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface">Product Manager</div>
+<div class="font-body-sm text-body-sm text-on-surface">Product</div>
+<div class="flex justify-end gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">edit</span>
+<span class="material-symbols-outlined text-error">delete</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Overlay & Dialog -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-strong px-md">
+<!-- Dialog Container -->
+<div aria-labelledby="dialog-title" aria-modal="true" class="bg-surface-container w-full max-w-md rounded-lg border border-outline shadow-2xl flex flex-col overflow-hidden" role="dialog">
+<!-- Header -->
+<div class="px-lg py-md border-b border-outline flex items-center gap-sm bg-surface-container-high">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h2 class="font-headline-md text-headline-md text-on-surface m-0" id="dialog-title">Delete Employee</h2>
+</div>
+<!-- Body -->
+<div class="px-lg py-lg bg-surface">
+<p class="font-body-md text-body-md text-on-surface mb-md">
+                    Are you sure you want to delete <strong class="text-white">Marcus Vance</strong>?
+                </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">
+                    This action will permanently remove their profile, revoke all system access, and archive their associated records. This cannot be undone.
+                </p>
+<!-- Summary Card -->
+<div class="bg-surface-container-low border border-outline rounded p-md flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-bright overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a corporate employee in a dark studio setting. The lighting is cinematic, highlighting the subject's face against a deep, dark slate background. High contrast, modern enterprise corporate style, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjva1DTGefc67UTcT5fW137EaqmaKwraB8YmtczPWzo9VtOhCYI8pSxMB8k9zBUIqr-KNiqtv36DHvhZZLF4-NRZPpXQ-A3pY3ouT258cOuHwMOY-FSM_0qU0vp8x8tQc0kuV2sr1lNbPI2v2jaX7h5370quSgF4cpDGXxFUU2NSH_EJ5VQhYjYPDtpkpIWU_vGt91rFyeqY02WrJuewYOv6pLx7zFKSzgzRUB3L42Mi4tBnQ5ZU5tng"/>
+</div>
+<div>
+<div class="font-body-md text-body-md font-medium text-on-surface">Marcus Vance</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Product Manager • Product Dept</div>
+</div>
+</div>
+</div>
+<!-- Footer / Actions -->
+<div class="px-lg py-md border-t border-outline bg-surface-container-high flex justify-end gap-sm">
+<button class="px-md py-sm rounded border border-outline bg-surface hover:bg-surface-bright text-on-surface font-label-md text-label-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface" type="button">
+                    Cancel
+                </button>
+<button class="px-md py-sm rounded bg-error hover:bg-error/90 text-on-error font-label-md text-label-md transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-error focus:ring-offset-2 focus:ring-offset-surface flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+                    Delete Employee
+                </button>
+</div>
+</div>
+</div>
+</body></html>

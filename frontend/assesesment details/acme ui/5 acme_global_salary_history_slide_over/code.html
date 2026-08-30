@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ACME Global - Compensation Adjustments</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0f172a",
+                        "surface-container": "#1e293b",
+                        "surface-container-high": "#1c2b3c",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001a42",
+                        "surface-bright": "#334155",
+                        "on-background": "#d4e4fa",
+                        "on-surface": "#d4e4fa",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#002113",
+                        "primary": "#bec6e0",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-low": "#0d1c2d",
+                        "inverse-primary": "#565e74",
+                        "outline": "#334155",
+                        "primary-container": "#0f172a",
+                        "secondary": "#adc6ff",
+                        "on-secondary-container": "#e6ecff",
+                        "secondary-fixed": "#d8e2ff",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#0566d9",
+                        "on-primary-container": "#798098",
+                        "surface-container-highest": "#273647",
+                        "background": "#051424",
+                        "tertiary-container": "#001c10",
+                        "surface-tint": "#bec6e0",
+                        "on-primary": "#283044",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "surface-variant": "#273647",
+                        "inverse-surface": "#d4e4fa",
+                        "inverse-on-surface": "#233143",
+                        "outline-variant": "#45464d",
+                        "on-surface-variant": "#c6c6cd",
+                        "on-tertiary-container": "#009365",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary": "#4edea3",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-container-lowest": "#010f1f",
+                        "surface-dim": "#051424",
+                        "on-error": "#690005",
+                        "on-secondary": "#002e6a",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary": "#003824",
+                        "tertiary-fixed-dim": "#4edea3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "margin": "24px",
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "xl": "40px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "display": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen overflow-hidden flex flex-col antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-margin h-16 bg-surface dark:bg-surface border-b border-outline dark:border-outline-variant flat no shadows">
+<div class="flex items-center gap-md">
+<span class="text-headline-md font-headline-md font-bold text-on-surface dark:text-on-surface tracking-tight">ACME Global</span>
+<div class="ml-lg hidden md:flex items-center h-16">
+<nav class="flex h-full">
+<a class="h-full px-sm flex flex-col justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors cursor-pointer mr-md" href="#">
+<span class="font-body-md text-body-md">Directory</span>
+</a>
+<a class="h-full px-sm flex flex-col justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors cursor-pointer mr-md" href="#">
+<span class="font-body-md text-body-md">Payroll</span>
+</a>
+<a class="h-full px-sm flex flex-col justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors cursor-pointer mr-md" href="#">
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="h-full px-sm flex flex-col justify-center text-primary dark:text-primary border-b-2 border-primary pb-1 cursor-pointer mr-md" href="#">
+<span class="font-body-md text-body-md">Compliance</span>
+</a>
+</nav>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search Bar (on left of actions) -->
+<div class="relative hidden lg:block w-64 mr-sm">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-surface-container border border-outline rounded-DEFAULT h-8 pl-xl pr-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-secondary-container focus:ring-1 focus:ring-secondary-container transition-all" placeholder="Search resources..." type="text"/>
+</div>
+<button class="bg-surface-on text-surface bg-white text-[#0f172a] h-8 px-md rounded-DEFAULT font-label-md text-label-md font-bold hover:bg-gray-100 transition-colors flex items-center justify-center">
+                Add Employee
+            </button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors rounded-DEFAULT hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors rounded-DEFAULT hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline overflow-hidden cursor-pointer ml-xs">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A highly detailed close-up professional corporate headshot of a diverse individual, dramatic soft studio lighting, sharp focus, deep midnight slate background, modern business aesthetic, cinematic grading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8BHKjphvJqt6U3WIwBTG3NwlYaY3e9crc_gle3tAAl5B4DuLgxW9JUZ1l0MN-BBarE_v9C5HScmh6EMcoM4CUfQ_i9uqyv8YyoJXbq8xqDuvuPcGrNAW79jyGPyBbRaQIzVSGbX6HqeLewsJ8lUX17JyEK5_S34RnPiuBnIblsWbtzIxzqmet3QQ5KxMFjxrzqsMnMHbtsW2gnqzWIvUshGlS0Y1MZtSaOr7XHwEa96RqvJn6tjIx4g"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-16">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 z-30 flex flex-col pt-lg bg-surface-container dark:bg-surface-container border-r border-outline dark:border-outline-variant flat no shadows">
+<div class="px-md pb-margin border-b border-outline mb-sm flex items-center gap-sm">
+<div class="w-10 h-10 rounded-DEFAULT bg-surface-container-highest border border-outline flex items-center justify-center overflow-hidden shrink-0">
+<span class="material-symbols-outlined text-primary text-[24px]">corporate_fare</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-headline-md font-headline-md text-on-surface truncate">Enterprise Portal</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Admin Console</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-sm px-xs">
+<a class="flex items-center gap-md px-md py-sm transition-all text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high hover:text-on-surface rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-all text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high hover:text-on-surface rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">Employees</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-all text-primary dark:text-primary font-bold border-r-4 border-primary bg-surface-container-high rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Compensation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-all text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high hover:text-on-surface rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Documents</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-all text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high hover:text-on-surface rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="p-md border-t border-outline">
+<button class="w-full bg-[#3b82f6] text-white h-10 rounded-DEFAULT font-label-md text-label-md flex items-center justify-center mb-md hover:bg-blue-600 transition-colors">
+                    Quick Batch Import
+                </button>
+<div class="flex flex-col gap-xs">
+<a class="flex items-center gap-md px-sm py-sm text-on-surface-variant hover:text-on-surface transition-colors rounded-DEFAULT hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="contact_support">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm text-on-surface-variant hover:text-on-surface transition-colors rounded-DEFAULT hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area (Blurred Background) -->
+<main class="ml-64 flex-1 p-margin h-[calc(100vh-64px)] overflow-y-auto relative bg-background">
+<!-- Simulated Background Content (Roster) - Blurred -->
+<div class="filter blur-sm opacity-50 pointer-events-none transition-all duration-300">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="text-display font-display text-on-surface">Employee Roster</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-sm">Manage compensation and organizational hierarchy.</p>
+</div>
+</div>
+<div class="bg-surface-container border border-outline rounded-lg overflow-hidden">
+<div class="grid grid-cols-12 gap-gutter p-md bg-surface-bright border-b border-outline">
+<div class="col-span-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Employee</div>
+<div class="col-span-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Role</div>
+<div class="col-span-2 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Base Salary</div>
+<div class="col-span-2 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</div>
+<div class="col-span-2 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</div>
+</div>
+<!-- Dummy rows -->
+<div class="grid grid-cols-12 gap-gutter p-md border-b border-outline bg-surface-container hover:bg-surface-container-high">
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest"></div>
+<span class="font-body-md text-body-md text-on-surface">Sarah Jenkins</span>
+</div>
+<div class="col-span-3 flex items-center font-body-sm text-body-sm text-on-surface-variant">VP Engineering</div>
+<div class="col-span-2 flex items-center font-body-md text-body-md text-on-surface">$245,000</div>
+<div class="col-span-2 flex items-center"><span class="px-2 py-1 rounded-DEFAULT bg-green-500/10 text-green-500 font-label-sm text-label-sm">Active</span></div>
+<div class="col-span-2 flex items-center justify-end"><span class="material-symbols-outlined text-on-surface-variant">more_vert</span></div>
+</div>
+<div class="grid grid-cols-12 gap-gutter p-md border-b border-outline bg-surface-container bg-surface-container-high border-l-2 border-l-primary">
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest"></div>
+<span class="font-body-md text-body-md text-on-surface">Marcus Chen</span>
+</div>
+<div class="col-span-3 flex items-center font-body-sm text-body-sm text-on-surface-variant">Senior Product Designer</div>
+<div class="col-span-2 flex items-center font-body-md text-body-md text-on-surface">$162,500</div>
+<div class="col-span-2 flex items-center"><span class="px-2 py-1 rounded-DEFAULT bg-green-500/10 text-green-500 font-label-sm text-label-sm">Active</span></div>
+<div class="col-span-2 flex items-center justify-end"><span class="material-symbols-outlined text-on-surface-variant">more_vert</span></div>
+</div>
+<div class="grid grid-cols-12 gap-gutter p-md border-b border-outline bg-surface-container hover:bg-surface-container-high">
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest"></div>
+<span class="font-body-md text-body-md text-on-surface">Elena Rodriguez</span>
+</div>
+<div class="col-span-3 flex items-center font-body-sm text-body-sm text-on-surface-variant">Data Scientist</div>
+<div class="col-span-2 flex items-center font-body-md text-body-md text-on-surface">$148,000</div>
+<div class="col-span-2 flex items-center"><span class="px-2 py-1 rounded-DEFAULT bg-green-500/10 text-green-500 font-label-sm text-label-sm">Active</span></div>
+<div class="col-span-2 flex items-center justify-end"><span class="material-symbols-outlined text-on-surface-variant">more_vert</span></div>
+</div>
+</div>
+</div>
+<!-- Overlay Background for Slide-over -->
+<div class="absolute inset-0 bg-background/40 backdrop-blur-[2px] z-40 transition-opacity"></div>
+<!-- Slide-over Sheet (Right Drawer) -->
+<div class="absolute top-0 right-0 h-full w-full max-w-lg bg-surface-container border-l border-outline shadow-[-8px_0_24px_rgba(0,0,0,0.4)] z-50 flex flex-col transform transition-transform duration-300 ease-in-out translate-x-0">
+<!-- Drawer Header -->
+<div class="px-lg py-md border-b border-outline flex justify-between items-start bg-surface">
+<div class="flex gap-md items-center">
+<div class="w-12 h-12 rounded-DEFAULT overflow-hidden border border-outline shrink-0">
+<img alt="Employee Photo" class="w-full h-full object-cover" data-alt="A sharp corporate portrait of an Asian male professional in a modern dark-themed office setting, subtle rim lighting, shallow depth of field, high-end enterprise aesthetic, muted color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD630rM1nlpJdFlLdxImzhK-cJnnF9BQvXKGvTLkWvyp-HRduQlBkAChPE5Zak_9kn85q1jbu1hVZhjwCHq4Hl8ag216LQFpdpexrNAt3xUu2_QmmxfJ1QM6TgleRXMSSyYuIq9AQkhYzSbUOS7xeLXpf7CkPUqgHETmJrrkyOBCS3nlAbIpNl86l8GD-hYsz-BQ_I6rhG25MzTnWI9A0oT4hXvCdWYwfNvjnYDOf1zKgNTRIZCweWc3w"/>
+</div>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface m-0 leading-tight">Marcus Chen</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant m-0">Senior Product Designer • ID: EMP-0942</p>
+</div>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content -->
+<div class="flex-1 overflow-y-auto p-lg bg-surface-container">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Compensation History</h3>
+<button class="px-sm py-xs border border-outline rounded-DEFAULT bg-surface-bright text-on-surface font-label-sm text-label-sm flex items-center gap-xs hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span> Export
+                        </button>
+</div>
+<!-- Current Comp Summary Card -->
+<div class="bg-surface border border-outline rounded-lg p-md mb-xl">
+<div class="grid grid-cols-2 gap-md">
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Current Base Salary</span>
+<span class="block font-headline-lg text-headline-lg text-primary">$162,500 <span class="font-body-sm text-body-sm text-on-surface-variant">USD / yr</span></span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Next Review Date</span>
+<span class="block font-body-lg text-body-lg text-on-surface">Oct 15, 2024</span>
+</div>
+</div>
+</div>
+<!-- Timeline -->
+<div class="relative before:absolute before:inset-y-0 before:left-[19px] before:w-[2px] before:bg-outline ml-sm">
+<!-- Timeline Item 1 (Most Recent) -->
+<div class="relative flex gap-md mb-lg">
+<div class="w-10 h-10 rounded-full bg-surface-bright border-2 border-primary flex items-center justify-center shrink-0 z-10 relative">
+<span class="material-symbols-outlined text-primary text-[20px]">trending_up</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-xs">
+<span class="font-label-md text-label-md text-primary bg-primary/10 px-2 py-0.5 rounded-sm">Promotion</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 15, 2023</span>
+</div>
+<div class="bg-surface border border-outline rounded-lg p-sm mt-sm hover:bg-surface-container-high transition-colors">
+<div class="flex justify-between items-baseline mb-sm border-b border-outline pb-sm">
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">$162,500 <span class="font-body-sm text-body-sm text-green-400 font-normal ml-xs">+18.2%</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant line-through">$137,500</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant m-0">Promoted to Senior Product Designer. Expanded responsibilities to lead the enterprise design system initiative.</p>
+<div class="mt-sm flex gap-sm">
+<div class="flex items-center gap-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">account_circle</span> Auth: S. Jenkins
+                                        </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative flex gap-md mb-lg">
+<div class="w-10 h-10 rounded-full bg-surface-container border-2 border-outline flex items-center justify-center shrink-0 z-10 relative">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">sync</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-xs">
+<span class="font-label-md text-label-md text-on-surface bg-surface-bright px-2 py-0.5 rounded-sm border border-outline">Annual Review</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Jan 01, 2023</span>
+</div>
+<div class="bg-surface border border-outline rounded-lg p-sm mt-sm hover:bg-surface-container-high transition-colors">
+<div class="flex justify-between items-baseline mb-sm border-b border-outline pb-sm">
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">$137,500 <span class="font-body-sm text-body-sm text-green-400 font-normal ml-xs">+5.7%</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant line-through">$130,000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant m-0">Standard annual cost of living and merit increase based on 'Exceeds Expectations' performance rating.</p>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 (Initial Hire) -->
+<div class="relative flex gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container border-2 border-outline flex items-center justify-center shrink-0 z-10 relative">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">flag</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-xs">
+<span class="font-label-md text-label-md text-on-surface bg-surface-bright px-2 py-0.5 rounded-sm border border-outline">New Hire</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mar 12, 2021</span>
+</div>
+<div class="bg-surface border border-outline rounded-lg p-sm mt-sm hover:bg-surface-container-high transition-colors">
+<div class="flex justify-between items-baseline mb-sm border-b border-outline pb-sm">
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">$130,000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Starting Base</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant m-0">Hired as Mid-Level Product Designer. Included $10k sign-on bonus (paid separately).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Footer -->
+<div class="p-md border-t border-outline bg-surface flex justify-end gap-sm">
+<button class="px-md py-sm rounded-DEFAULT border border-outline bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors">
+                        Close
+                    </button>
+<button class="px-md py-sm rounded-DEFAULT bg-secondary-container text-white font-label-md text-label-md hover:bg-blue-600 transition-colors">
+                        Propose Adjustment
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

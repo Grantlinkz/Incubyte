@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ACME Global - Employee Roster</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          theme: {
+            extend: {
+              "colors": {
+                "background": "#f8f9ff",
+                "on-background": "#0f172a",
+                "surface": "#ffffff",
+                "on-surface": "#0f172a",
+                "surface-variant": "#f1f5f9",
+                "on-surface-variant": "#475569",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#f8fafc",
+                "surface-container": "#f1f5f9",
+                "surface-container-high": "#e2e8f0",
+                "surface-container-highest": "#cbd5e1",
+                "outline": "#cbd5e1",
+                "outline-variant": "#e2e8f0",
+                "primary": "#2563eb",
+                "on-primary": "#ffffff",
+                "primary-container": "#dbeafe",
+                "on-primary-container": "#1e3a8a",
+                "secondary": "#475569",
+                "on-secondary": "#ffffff",
+                "secondary-container": "#e2e8f0",
+                "on-secondary-container": "#0f172a",
+                "tertiary": "#16a34a",
+                "on-tertiary": "#ffffff",
+                "tertiary-container": "#dcfce7",
+                "on-tertiary-container": "#166534",
+                "error": "#dc2626",
+                "on-error": "#ffffff",
+                "error-container": "#fee2e2",
+                "on-error-container": "#991b1b"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+              },
+              "spacing": {
+                "base": "4px",
+                "xs": "4px",
+                "md": "16px",
+                "gutter": "16px",
+                "margin": "24px",
+                "lg": "24px",
+                "xl": "40px",
+                "sm": "8px",
+                "container-max": "1440px"
+              },
+              "fontFamily": {
+                "display": ["Inter", "sans-serif"],
+                "body-lg": ["Inter", "sans-serif"],
+                "body-md": ["Inter", "sans-serif"],
+                "body-sm": ["Inter", "sans-serif"],
+                "headline-lg": ["Inter", "sans-serif"],
+                "label-sm": ["Inter", "sans-serif"],
+                "headline-md": ["Inter", "sans-serif"],
+                "label-md": ["Inter", "sans-serif"],
+                "mono": ["JetBrains Mono", "monospace"]
+              },
+              "fontSize": {
+                "display": ["36px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dense data table */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.surface-container');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.outline');
+            border-radius: theme('borderRadius.full');
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.on-surface-variant');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface border-b border-outline w-full px-margin h-16 flex items-center justify-between sticky top-0 z-50">
+<div class="flex items-center gap-xl">
+<span class="font-display text-headline-md font-bold text-on-surface">ACME Compensation</span>
+<div class="hidden md:flex items-center gap-md font-body-md h-full">
+<a class="text-on-surface-variant hover:text-primary transition-colors h-16 flex items-center" href="#">Overview</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors h-16 flex items-center" href="#">How ACME Pays</a>
+<a class="text-primary font-bold border-b-2 border-primary h-16 flex items-center" href="#">Employee Roster</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors h-16 flex items-center" href="#">Market Data</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search Bar On Left (per JSON) but placing it centrally/leftish relative to actions -->
+<div class="relative hidden lg:block mr-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="bg-surface-container border border-outline rounded-DEFAULT pl-9 pr-3 py-1.5 text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary w-64 placeholder-on-surface-variant transition-colors outline-none" placeholder="Search..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">payments</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">account_circle</span></button>
+<div class="h-6 w-px bg-outline mx-2"></div>
+<button class="border border-outline bg-surface-container hover:bg-surface-container-high text-on-surface px-3 py-1.5 rounded-DEFAULT text-body-sm font-label-md transition-colors">Import CSV</button>
+<button class="bg-on-surface text-surface font-bold px-3 py-1.5 rounded-DEFAULT text-body-sm hover:opacity-90 transition-opacity">Add Employee</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-margin py-margin flex flex-col gap-lg">
+<!-- Header & Toolbar -->
+<div class="flex flex-col gap-md">
+<div>
+<h1 class="font-display text-headline-lg font-bold text-on-surface">Employee Roster</h1>
+<p class="text-body-md text-on-surface-variant mt-1">Manage and review global compensation data for all active personnel.</p>
+</div>
+<!-- Toolbar -->
+<div class="bg-surface-container border border-outline rounded-lg p-3 flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-3 flex-1 min-w-[300px]">
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-surface border border-outline rounded-DEFAULT pl-9 pr-3 py-2 text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary placeholder-on-surface-variant transition-colors outline-none" placeholder="Search by name, title, or email..." type="text"/>
+</div>
+<div class="h-6 w-px bg-outline hidden sm:block"></div>
+<div class="hidden sm:flex items-center gap-2">
+<!-- Filters -->
+<button class="flex items-center gap-1 border border-outline bg-surface hover:bg-surface-container-high text-on-surface px-2.5 py-1.5 rounded-DEFAULT text-label-md transition-colors">
+                            Department <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1 border border-outline bg-surface hover:bg-surface-container-high text-on-surface px-2.5 py-1.5 rounded-DEFAULT text-label-md transition-colors">
+                            Country <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1 border border-outline bg-surface hover:bg-surface-container-high text-on-surface px-2.5 py-1.5 rounded-DEFAULT text-label-md transition-colors">
+                            Type <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-1.5 text-on-surface-variant hover:text-on-surface text-label-md px-2 py-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px]">filter_list</span> More Filters
+                    </button>
+<button class="flex items-center gap-1.5 border border-outline bg-surface hover:bg-surface-container-high text-on-surface px-3 py-1.5 rounded-DEFAULT text-body-sm font-label-md transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span> Export CSV
+                    </button>
+</div>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface border border-outline rounded-lg overflow-hidden flex flex-col shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="bg-surface-container border-b border-outline text-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="px-4 py-3 font-semibold w-12 text-center">
+<input class="rounded-sm border-outline bg-surface text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+</th>
+<th class="px-4 py-3 font-semibold">Employee</th>
+<th class="px-4 py-3 font-semibold">Title &amp; Dept</th>
+<th class="px-4 py-3 font-semibold">Location</th>
+<th class="px-4 py-3 font-semibold">Status</th>
+<th class="px-4 py-3 font-semibold text-right">Local Comp</th>
+<th class="px-4 py-3 font-semibold text-right">Norm Salary (USD)</th>
+<th class="px-4 py-3 font-semibold w-12 sticky right-0 bg-surface-container z-10 shadow-[-4px_0_12px_rgba(0,0,0,0.05)]"></th>
+</tr>
+</thead>
+<tbody class="text-body-sm text-on-surface divide-y divide-outline">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors h-[48px] group">
+<td class="px-4 py-2 text-center">
+<input class="rounded-sm border-outline bg-surface text-primary focus:ring-primary focus:ring-offset-surface opacity-0 group-hover:opacity-100 transition-opacity" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium text-on-surface">Eleanor Vance</div>
+<div class="text-on-surface-variant text-[11px]">evance@acme.com</div>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium">Principal Engineer</div>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded-sm bg-surface-container border border-outline text-[10px] text-on-surface-variant mt-0.5">Engineering</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1.5">
+<span class="text-lg leading-none">🇬🇧</span>
+<div>
+<div class="font-medium">London, UK</div>
+<div class="text-on-surface-variant text-[11px]">EMEA-01</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-tertiary-container text-on-tertiary-container border border-tertiary/20 text-label-sm font-medium">Active</span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono text-on-surface">£145,000</div>
+<div class="font-mono text-on-surface-variant text-[11px]">+£25K Bonus</div>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono font-medium text-on-surface bg-surface px-2 py-1 rounded-sm border border-outline/50 shadow-sm inline-block">$184,150</div>
+</td>
+<td class="px-4 py-2 text-right sticky right-0 bg-surface group-hover:bg-surface-container-low transition-colors z-10 border-l border-transparent group-hover:border-outline/50">
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors h-[48px] group">
+<td class="px-4 py-2 text-center">
+<input class="rounded-sm border-outline bg-surface text-primary focus:ring-primary focus:ring-offset-surface opacity-0 group-hover:opacity-100 transition-opacity" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium text-on-surface">Marcus Thorne</div>
+<div class="text-on-surface-variant text-[11px]">mthorne@acme.com</div>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium">VP, Global Sales</div>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded-sm bg-surface-container border border-outline text-[10px] text-on-surface-variant mt-0.5">Sales</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1.5">
+<span class="text-lg leading-none">🇺🇸</span>
+<div>
+<div class="font-medium">New York, NY</div>
+<div class="text-on-surface-variant text-[11px]">AMER-02</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-tertiary-container text-on-tertiary-container border border-tertiary/20 text-label-sm font-medium">Active</span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono text-on-surface">$220,000</div>
+<div class="font-mono text-on-surface-variant text-[11px]">+$150K Comm.</div>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono font-medium text-on-surface bg-surface px-2 py-1 rounded-sm border border-outline/50 shadow-sm inline-block">$220,000</div>
+</td>
+<td class="px-4 py-2 text-right sticky right-0 bg-surface group-hover:bg-surface-container-low transition-colors z-10 border-l border-transparent group-hover:border-outline/50">
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3 - Selected State Example -->
+<tr class="bg-primary-container/30 hover:bg-primary-container/50 transition-colors h-[48px] group">
+<td class="px-4 py-2 text-center">
+<input checked="" class="rounded-sm border-primary bg-primary text-primary focus:ring-primary focus:ring-offset-surface" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium text-on-surface">Chen Wei</div>
+<div class="text-on-surface-variant text-[11px]">cwei@acme.com</div>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium">Sr. Data Scientist</div>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded-sm bg-surface-container border border-outline text-[10px] text-on-surface-variant mt-0.5">Analytics</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1.5">
+<span class="text-lg leading-none">🇸🇬</span>
+<div>
+<div class="font-medium">Singapore</div>
+<div class="text-on-surface-variant text-[11px]">APAC-01</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-error-container text-on-error-container border border-error/20 text-label-sm font-medium">Leave</span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono text-on-surface">S$185,000</div>
+<div class="font-mono text-on-surface-variant text-[11px]">N/A</div>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono font-medium text-on-surface bg-surface px-2 py-1 rounded-sm border border-outline/50 shadow-sm inline-block">$137,640</div>
+</td>
+<td class="px-4 py-2 text-right sticky right-0 bg-primary-container/30 group-hover:bg-primary-container/50 transition-colors z-10 border-l border-transparent group-hover:border-outline/50">
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors h-[48px] group">
+<td class="px-4 py-2 text-center">
+<input class="rounded-sm border-outline bg-surface text-primary focus:ring-primary focus:ring-offset-surface opacity-0 group-hover:opacity-100 transition-opacity" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium text-on-surface">Sarah Jenkins</div>
+<div class="text-on-surface-variant text-[11px]">sjenkins@acme.com</div>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium">HR Business Partner</div>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded-sm bg-surface-container border border-outline text-[10px] text-on-surface-variant mt-0.5">Human Resources</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1.5">
+<span class="text-lg leading-none">🇨🇦</span>
+<div>
+<div class="font-medium">Toronto, ON</div>
+<div class="text-on-surface-variant text-[11px]">AMER-03</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-tertiary-container text-on-tertiary-container border border-tertiary/20 text-label-sm font-medium">Active</span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono text-on-surface">C$110,000</div>
+<div class="font-mono text-on-surface-variant text-[11px]">+C$10K Bonus</div>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono font-medium text-on-surface bg-surface px-2 py-1 rounded-sm border border-outline/50 shadow-sm inline-block">$81,400</div>
+</td>
+<td class="px-4 py-2 text-right sticky right-0 bg-surface group-hover:bg-surface-container-low transition-colors z-10 border-l border-transparent group-hover:border-outline/50">
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors h-[48px] group">
+<td class="px-4 py-2 text-center">
+<input class="rounded-sm border-outline bg-surface text-primary focus:ring-primary focus:ring-offset-surface opacity-0 group-hover:opacity-100 transition-opacity" type="checkbox"/>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium text-on-surface">Alejandro Silva</div>
+<div class="text-on-surface-variant text-[11px]">asilva@acme.com</div>
+</td>
+<td class="px-4 py-2">
+<div class="font-medium">Marketing Director</div>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded-sm bg-surface-container border border-outline text-[10px] text-on-surface-variant mt-0.5">Marketing</div>
+</td>
+<td class="px-4 py-2">
+<div class="flex items-center gap-1.5">
+<span class="text-lg leading-none">🇪🇸</span>
+<div>
+<div class="font-medium">Madrid, ES</div>
+<div class="text-on-surface-variant text-[11px]">EMEA-04</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-tertiary-container text-on-tertiary-container border border-tertiary/20 text-label-sm font-medium">Active</span>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono text-on-surface">€95,000</div>
+<div class="font-mono text-on-surface-variant text-[11px]">+€15K Bonus</div>
+</td>
+<td class="px-4 py-2 text-right">
+<div class="font-mono font-medium text-on-surface bg-surface px-2 py-1 rounded-sm border border-outline/50 shadow-sm inline-block">$102,600</div>
+</td>
+<td class="px-4 py-2 text-right sticky right-0 bg-surface group-hover:bg-surface-container-low transition-colors z-10 border-l border-transparent group-hover:border-outline/50">
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface-container border-t border-outline px-4 py-3 flex items-center justify-between text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-4">
+<span>Showing <span class="font-mono text-on-surface font-medium">1–25</span> of <span class="font-mono text-on-surface font-medium">10,000</span> records</span>
+<div class="hidden sm:flex items-center gap-2">
+<span>Rows per page:</span>
+<select class="bg-surface border border-outline rounded-DEFAULT px-2 py-1 text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-body-sm outline-none">
+<option>25</option>
+<option>50</option>
+<option>100</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-1 font-mono">
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="w-7 h-7 rounded bg-primary text-on-primary flex items-center justify-center font-medium">1</button>
+<button class="w-7 h-7 rounded hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-colors">2</button>
+<button class="w-7 h-7 rounded hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-colors">3</button>
+<span class="px-1 text-on-surface-variant">...</span>
+<button class="w-7 h-7 rounded hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-colors">400</button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

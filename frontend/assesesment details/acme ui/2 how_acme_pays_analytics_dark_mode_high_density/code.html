@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How ACME Pays - Analytics (Dark Mode - High Density)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#122131",
+                        "surface-dim": "#051424",
+                        "surface-bright": "#334155",
+                        "outline": "#334155",
+                        "outline-variant": "#45464d",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-secondary-container": "#e6ecff",
+                        "on-primary-fixed": "#131b2e",
+                        "inverse-primary": "#565e74",
+                        "primary-container": "#0f172a",
+                        "background": "#051424",
+                        "primary": "#bec6e0",
+                        "error-container": "#93000a",
+                        "on-surface-variant": "#94a3b8",
+                        "inverse-surface": "#d4e4fa",
+                        "surface-container-lowest": "#010f1f",
+                        "on-tertiary-fixed": "#002113",
+                        "on-error": "#690005",
+                        "inverse-on-surface": "#233143",
+                        "on-surface": "#d4e4fa",
+                        "on-tertiary": "#003824",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#001a42",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#009365",
+                        "on-secondary": "#002e6a",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary": "#4edea3",
+                        "surface-container-highest": "#273647",
+                        "secondary-container": "#0566d9",
+                        "surface-tint": "#bec6e0",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#dae2fd",
+                        "surface": "#0f172a",
+                        "on-primary": "#283044",
+                        "secondary": "#adc6ff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-container": "#798098",
+                        "surface-container-high": "#1c2b3c",
+                        "surface-container-low": "#0d1c2d",
+                        "on-background": "#d4e4fa",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary-container": "#001c10",
+                        "surface-variant": "#273647",
+                        "secondary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "secondary-fixed-dim": "#adc6ff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "container-max": "1440px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "margin": "24px",
+                        "xl": "40px",
+                        "base": "4px"
+                    },
+                    fontFamily: {
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+                        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "600" }],
+                        "display": ["36px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-sm": ["11px", { lineHeight: "14px", fontWeight: "600" }],
+                        "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md antialiased">
+<!-- Top Navigation Bar -->
+<nav class="bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline-variant w-full h-10 px-margin flex justify-between items-center z-50 fixed top-0" style="backdrop-filter: blur(8px);">
+<div class="flex items-center gap-4 h-full">
+<span class="text-headline-md font-headline-md text-on-surface font-bold tracking-tight">ACME Compensation</span>
+<div class="hidden md:flex h-full ml-8 items-center gap-6">
+<a class="h-full flex items-center text-on-surface-variant font-label-md hover:bg-surface-container px-2 transition-colors" href="#">Overview</a>
+<a class="h-full flex items-center text-secondary font-bold font-label-md border-b-2 border-secondary px-2 opacity-80 duration-150 ease-in-out" href="#">How ACME Pays</a>
+<a class="h-full flex items-center text-on-surface-variant font-label-md hover:bg-surface-container px-2 transition-colors" href="#">Employee Roster</a>
+<a class="h-full flex items-center text-on-surface-variant font-label-md hover:bg-surface-container px-2 transition-colors" href="#">Market Data</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-label-md font-label-md bg-surface-container border border-outline px-3 py-1.5 rounded hover:bg-surface-bright transition-colors">Import CSV</button>
+<button class="text-label-md font-label-md bg-on-background text-background px-3 py-1.5 rounded font-bold hover:opacity-90 transition-opacity">Add Employee</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant" data-icon="person">person</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="max-w-container-max mx-auto px-margin pt-[88px] pb-xl grid grid-cols-12 gap-gutter">
+<!-- Header Section -->
+<div class="col-span-12 mb-lg">
+<h1 class="text-headline-md font-headline-md text-on-surface mb-xs">How ACME Pays</h1>
+<p class="text-body-md font-body-md text-on-surface-variant">Global compensation breakdown and geographic distribution metrics.</p>
+</div>
+<!-- KPI Metrics Strip -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-4 gap-gutter mb-lg">
+<!-- KPI 1 -->
+<div class="bg-surface border border-outline rounded hover:bg-surface-container transition-colors group p-2">
+<div class="flex items-center justify-between mb-sm">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Total Annual Payroll</span>
+<span class="material-symbols-outlined text-[16px] text-secondary opacity-70 group-hover:opacity-100 transition-opacity" data-icon="payments">payments</span>
+</div>
+<div class="text-headline-lg font-headline-lg text-on-surface mb-xs">$142.5M <span class="text-body-sm font-body-sm text-on-surface-variant font-normal">USD</span></div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Normalized total spend across all regions.</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface border border-outline rounded hover:bg-surface-container transition-colors group p-2">
+<div class="flex items-center justify-between mb-sm">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Average Base Salary</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary opacity-70 group-hover:opacity-100 transition-opacity" data-icon="account_balance">account_balance</span>
+</div>
+<div class="text-headline-lg font-headline-lg text-on-surface mb-xs">$98,400 <span class="text-body-sm font-body-sm text-on-surface-variant font-normal">USD</span></div>
+<div class="flex items-center gap-2 mt-2">
+<span class="text-label-sm font-label-sm text-tertiary bg-tertiary/10 px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="trending_up">trending_up</span> +3.2%
+                    </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">vs last year</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface border border-outline rounded hover:bg-surface-container transition-colors group p-2">
+<div class="flex items-center justify-between mb-sm">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Median Salary</span>
+<span class="material-symbols-outlined text-[16px] text-primary opacity-70 group-hover:opacity-100 transition-opacity" data-icon="equalizer">equalizer</span>
+</div>
+<div class="text-headline-lg font-headline-lg text-on-surface mb-xs">$92,000 <span class="text-body-sm font-body-sm text-on-surface-variant font-normal">USD</span></div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Excludes executive compensation.</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface border border-outline rounded hover:bg-surface-container transition-colors group p-2">
+<div class="flex items-center justify-between mb-sm">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Active Headcount</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant opacity-70 group-hover:opacity-100 transition-opacity" data-icon="group">group</span>
+</div>
+<div class="text-headline-lg font-headline-lg text-on-surface mb-sm">10,000 <span class="text-body-sm font-body-sm text-on-surface-variant font-normal">Employees</span></div>
+<div class="flex gap-2 flex-wrap">
+<span class="text-[10px] font-label-sm px-1.5 py-0.5 rounded bg-surface-variant border border-outline text-on-surface-variant">USD</span>
+<span class="text-[10px] font-label-sm px-1.5 py-0.5 rounded bg-surface-variant border border-outline text-on-surface-variant">EUR</span>
+<span class="text-[10px] font-label-sm px-1.5 py-0.5 rounded bg-surface-variant border border-outline text-on-surface-variant">GBP</span>
+<span class="text-[10px] font-label-sm px-1.5 py-0.5 rounded bg-surface-variant border border-outline text-on-surface-variant">CAD</span>
+</div>
+</div>
+</div>
+<!-- Analytical Visualizations Row -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Departmental Breakdown -->
+<div class="bg-surface border border-outline rounded flex flex-col h-[400px] p-2">
+<div class="p-md border-b border-outline flex justify-between items-center bg-surface-container-low">
+<div>
+<h2 class="text-body-lg font-body-lg text-on-surface font-semibold">Departmental Spend</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Annual run rate by functional group.</p>
+</div>
+<button class="p-1 hover:bg-surface-variant rounded text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<div class="p-md flex-1 overflow-y-auto relative">
+<!-- Faux Bar Chart Lines -->
+<div class="absolute inset-0 pt-md pb-md flex flex-col justify-between pointer-events-none z-0">
+<div class="border-t border-outline-variant/30 w-full ml-[80px]"></div>
+<div class="border-t border-outline-variant/30 w-full ml-[80px]"></div>
+<div class="border-t border-outline-variant/30 w-full ml-[80px]"></div>
+<div class="border-t border-outline-variant/30 w-full ml-[80px]"></div>
+<div class="border-t border-outline-variant/30 w-full ml-[80px]"></div>
+</div>
+<div class="space-y-4 relative z-10 pt-2">
+<!-- Bar Item -->
+<div class="flex items-center">
+<span class="w-[80px] text-label-sm font-label-sm text-on-surface-variant text-right pr-4 truncate">Engineering</span>
+<div class="flex-1 flex items-center gap-2">
+<div class="h-6 bg-secondary/80 rounded-r border border-secondary/40 relative group cursor-crosshair transition-all hover:bg-secondary" style="width: 85%;">
+<div class="absolute left-full ml-2 opacity-0 group-hover:opacity-100 text-label-sm font-label-sm text-on-surface whitespace-nowrap transition-opacity">$42M</div>
+</div>
+</div>
+</div>
+<!-- Bar Item -->
+<div class="flex items-center">
+<span class="w-[80px] text-label-sm font-label-sm text-on-surface-variant text-right pr-4 truncate">Sales</span>
+<div class="flex-1 flex items-center gap-2">
+<div class="h-6 bg-secondary/70 rounded-r border border-secondary/30 relative group cursor-crosshair transition-all hover:bg-secondary" style="width: 60%;">
+<div class="absolute left-full ml-2 opacity-0 group-hover:opacity-100 text-label-sm font-label-sm text-on-surface whitespace-nowrap transition-opacity">$28M</div>
+</div>
+</div>
+</div>
+<!-- Bar Item -->
+<div class="flex items-center">
+<span class="w-[80px] text-label-sm font-label-sm text-on-surface-variant text-right pr-4 truncate">Product</span>
+<div class="flex-1 flex items-center gap-2">
+<div class="h-6 bg-secondary/60 rounded-r border border-secondary/30 relative group cursor-crosshair transition-all hover:bg-secondary" style="width: 45%;">
+<div class="absolute left-full ml-2 opacity-0 group-hover:opacity-100 text-label-sm font-label-sm text-on-surface whitespace-nowrap transition-opacity">$18M</div>
+</div>
+</div>
+</div>
+<!-- Bar Item -->
+<div class="flex items-center">
+<span class="w-[80px] text-label-sm font-label-sm text-on-surface-variant text-right pr-4 truncate">Marketing</span>
+<div class="flex-1 flex items-center gap-2">
+<div class="h-6 bg-secondary/50 rounded-r border border-secondary/20 relative group cursor-crosshair transition-all hover:bg-secondary" style="width: 35%;">
+<div class="absolute left-full ml-2 opacity-0 group-hover:opacity-100 text-label-sm font-label-sm text-on-surface whitespace-nowrap transition-opacity">$14M</div>
+</div>
+</div>
+</div>
+<!-- Bar Item -->
+<div class="flex items-center">
+<span class="w-[80px] text-label-sm font-label-sm text-on-surface-variant text-right pr-4 truncate">Operations</span>
+<div class="flex-1 flex items-center gap-2">
+<div class="h-6 bg-surface-variant rounded-r border border-outline relative group cursor-crosshair transition-all hover:bg-surface-bright" style="width: 25%;">
+<div class="absolute left-full ml-2 opacity-0 group-hover:opacity-100 text-label-sm font-label-sm text-on-surface whitespace-nowrap transition-opacity">$9M</div>
+</div>
+</div>
+</div>
+<!-- Bar Item -->
+<div class="flex items-center">
+<span class="w-[80px] text-label-sm font-label-sm text-on-surface-variant text-right pr-4 truncate">HR</span>
+<div class="flex-1 flex items-center gap-2">
+<div class="h-6 bg-surface-variant rounded-r border border-outline relative group cursor-crosshair transition-all hover:bg-surface-bright" style="width: 15%;">
+<div class="absolute left-full ml-2 opacity-0 group-hover:opacity-100 text-label-sm font-label-sm text-on-surface whitespace-nowrap transition-opacity">$5M</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Geographic Distribution -->
+<div class="bg-surface border border-outline rounded flex flex-col h-[400px]"><div class="p-2 border-b border-outline flex justify-between items-center bg-surface-container-low"><div><h2 class="text-body-md font-semibold text-on-surface">Geographic Distribution</h2><p class="text-[11px] text-on-surface-variant">Spend vs Headcount comparison</p></div><div class="flex gap-2"><div class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-secondary"></div><span class="text-[10px] text-on-surface-variant">Spend</span></div><div class="flex items-center gap-1"><div class="w-2 h-2 rounded-full bg-surface-bright border border-outline"></div><span class="text-[10px] text-on-surface-variant">HC</span></div></div></div><div class="p-2 flex-1 overflow-y-auto space-y-3"><div class="flex flex-col gap-1"><div class="flex justify-between text-[11px] mb-0.5"><span class="font-bold">United States</span><span class="text-on-surface-variant">$62M / 4,200 HC</span></div><div class="flex h-1.5 w-full bg-surface-variant rounded-full overflow-hidden"><div class="bg-secondary h-full" style="width: 85%"></div><div class="bg-surface-bright h-full" style="width: 10%"></div></div></div><div class="flex flex-col gap-1"><div class="flex justify-between text-[11px] mb-0.5"><span class="font-bold">United Kingdom</span><span class="text-on-surface-variant">$28M / 1,800 HC</span></div><div class="flex h-1.5 w-full bg-surface-variant rounded-full overflow-hidden"><div class="bg-secondary h-full" style="width: 45%"></div><div class="bg-surface-bright h-full" style="width: 15%"></div></div></div><div class="flex flex-col gap-1"><div class="flex justify-between text-[11px] mb-0.5"><span class="font-bold">Germany</span><span class="text-on-surface-variant">$22M / 1,500 HC</span></div><div class="flex h-1.5 w-full bg-surface-variant rounded-full overflow-hidden"><div class="bg-secondary h-full" style="width: 35%"></div><div class="bg-surface-bright h-full" style="width: 12%"></div></div></div><div class="flex flex-col gap-1"><div class="flex justify-between text-[11px] mb-0.5"><span class="font-bold">Canada</span><span class="text-on-surface-variant">$18M / 1,200 HC</span></div><div class="flex h-1.5 w-full bg-surface-variant rounded-full overflow-hidden"><div class="bg-secondary h-full" style="width: 25%"></div><div class="bg-surface-bright h-full" style="width: 10%"></div></div></div><div class="flex flex-col gap-1"><div class="flex justify-between text-[11px] mb-0.5"><span class="font-bold">Nigeria</span><span class="text-on-surface-variant">$12M / 1,300 HC</span></div><div class="flex h-1.5 w-full bg-surface-variant rounded-full overflow-hidden"><div class="bg-secondary h-full" style="width: 15%"></div><div class="bg-surface-bright h-full" style="width: 18%"></div></div></div></div></div>
+</div>
+</main>
+</body></html>

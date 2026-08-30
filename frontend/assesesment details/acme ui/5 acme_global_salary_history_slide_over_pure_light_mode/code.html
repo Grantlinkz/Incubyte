@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ACME Global - Compensation Adjustments</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "error-container": "#93000a",
+                "tertiary": "#4edea3",
+                "surface-container": "#122131",
+                "outline-variant": "#1e293b",
+                "on-tertiary-fixed": "#002113",
+                "on-secondary-fixed": "#001a42",
+                "error": "#ffb4ab",
+                "on-background": "#d4e4fa",
+                "tertiary-container": "#001c10",
+                "secondary": "#adc6ff",
+                "on-secondary-fixed-variant": "#004395",
+                "surface-container-highest": "#273647",
+                "secondary-fixed-dim": "#adc6ff",
+                "on-tertiary-container": "#009365",
+                "secondary-container": "#0566d9",
+                "surface-bright": "#334155",
+                "on-primary-fixed-variant": "#3f465c",
+                "on-primary-container": "#798098",
+                "on-surface": "#d4e4fa",
+                "on-tertiary": "#003824",
+                "surface-container-high": "#1c2b3c",
+                "inverse-primary": "#565e74",
+                "primary-container": "#0f172a",
+                "surface-tint": "#bec6e0",
+                "on-surface-variant": "#94a3b8",
+                "outline": "#334155",
+                "surface-container-low": "#0d1c2d",
+                "tertiary-fixed": "#6ffbbe",
+                "primary": "#bec6e0",
+                "on-tertiary-fixed-variant": "#005236",
+                "on-secondary-container": "#e6ecff",
+                "on-error-container": "#ffdad6",
+                "on-error": "#690005",
+                "primary-fixed-dim": "#bec6e0",
+                "tertiary-fixed-dim": "#4edea3",
+                "inverse-on-surface": "#233143",
+                "primary-fixed": "#dae2fd",
+                "on-primary": "#283044",
+                "surface-container-lowest": "#010f1f",
+                "background": "#051424",
+                "surface": "#0f172a",
+                "surface-variant": "#273647",
+                "on-secondary": "#002e6a",
+                "on-primary-fixed": "#131b2e",
+                "inverse-surface": "#d4e4fa",
+                "surface-dim": "#051424",
+                "secondary-fixed": "#d8e2ff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "container-max": "1440px",
+                "sm": "8px",
+                "gutter": "16px",
+                "margin": "24px",
+                "lg": "24px",
+                "xs": "4px",
+                "md": "16px",
+                "base": "4px",
+                "xl": "40px"
+        },
+        "fontFamily": {
+                "body-lg": [
+                        "Inter"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "11px",
+                        {
+                                "lineHeight": "14px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.015em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display": [
+                        "36px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+</head>
+<body class="bg-[#f8fafc] text-[#0f172a] font-body-md min-h-screen overflow-hidden flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-margin h-16 bg-white border-b border-slate-200 flat no shadows">
+<div class="flex items-center gap-md">
+<span class="text-headline-md font-headline-md font-bold text-slate-900 tracking-tight">ACME Global</span>
+<div class="ml-lg hidden md:flex items-center h-16">
+<nav class="flex h-full">
+<a class="h-full px-sm flex flex-col justify-center text-slate-600 hover:text-blue-600 transition-colors cursor-pointer mr-md" href="#">
+<span class="font-body-md text-body-md">Directory</span>
+</a>
+<a class="h-full px-sm flex flex-col justify-center text-slate-600 hover:text-blue-600 transition-colors cursor-pointer mr-md" href="#">
+<span class="font-body-md text-body-md">Payroll</span>
+</a>
+<a class="h-full px-sm flex flex-col justify-center text-slate-600 hover:text-blue-600 transition-colors cursor-pointer mr-md" href="#">
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="h-full px-sm flex flex-col justify-center text-blue-600 border-b-2 border-blue-600 pb-1 cursor-pointer mr-md" href="#">
+<span class="font-body-md text-body-md">Compliance</span>
+</a>
+</nav>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<!-- Search Bar (on left of actions) -->
+<div class="relative hidden lg:block w-64 mr-sm">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+<input class="w-full bg-slate-50 border border-slate-200 rounded-DEFAULT h-8 pl-xl pr-sm text-body-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" placeholder="Search resources..." type="text"/>
+</div>
+<button class="bg-blue-600 text-white h-8 px-md rounded-DEFAULT font-label-md text-label-md font-bold hover:bg-blue-700 transition-colors flex items-center justify-center">
+                Add Employee
+            </button>
+<button class="w-8 h-8 flex items-center justify-center text-slate-600 hover:text-blue-600 transition-colors rounded-DEFAULT hover:bg-slate-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-slate-600 hover:text-blue-600 transition-colors rounded-DEFAULT hover:bg-slate-100">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 border border-slate-300 overflow-hidden cursor-pointer ml-xs">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A highly detailed close-up professional corporate headshot of a diverse individual, dramatic soft studio lighting, sharp focus, deep midnight slate background, modern business aesthetic, cinematic grading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8BHKjphvJqt6U3WIwBTG3NwlYaY3e9crc_gle3tAAl5B4DuLgxW9JUZ1l0MN-BBarE_v9C5HScmh6EMcoM4CUfQ_i9uqyv8YyoJXbq8xqDuvuPcGrNAW79jyGPyBbRaQIzVSGbX6HqeLewsJ8lUX17JyEK5_S34RnPiuBnIblsWbtzIxzqmet3QQ5KxMFjxrzqsMnMHbtsW2gnqzWIvUshGlS0Y1MZtSaOr7XHwEa96RqvJn6tjIx4g"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-16">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 z-30 flex flex-col pt-lg bg-white border-r border-slate-200 flat no shadows">
+<div class="px-md pb-margin border-b border-slate-200 mb-sm flex items-center gap-sm">
+<div class="w-10 h-10 rounded-DEFAULT bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden shrink-0">
+<span class="material-symbols-outlined text-blue-600 text-[24px]">corporate_fare</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-headline-md font-headline-md text-slate-900 truncate">Enterprise Portal</span>
+<span class="font-label-sm text-label-sm text-slate-500 truncate">Admin Console</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-sm px-xs">
+<a class="flex items-center gap-md px-md py-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">Employees</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-all text-blue-600 font-bold border-r-4 border-blue-600 bg-blue-50 rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md">Compensation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Documents</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-r-DEFAULT mr-xs mb-xs" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="p-md border-t border-slate-200">
+<button class="w-full bg-blue-600 text-white h-10 rounded-DEFAULT font-label-md text-label-md flex items-center justify-center mb-md hover:bg-blue-700 transition-colors">
+                    Quick Batch Import
+                </button>
+<div class="flex flex-col gap-xs">
+<a class="flex items-center gap-md px-sm py-sm text-slate-600 hover:text-slate-900 transition-colors rounded-DEFAULT hover:bg-slate-50" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="contact_support">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm text-slate-600 hover:text-slate-900 transition-colors rounded-DEFAULT hover:bg-slate-50" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area (Blurred Background) -->
+<main class="ml-64 flex-1 p-margin h-[calc(100vh-64px)] overflow-y-auto relative bg-[#f8fafc]">
+<!-- Simulated Background Content (Roster) - Blurred -->
+<div class="filter blur-sm opacity-50 pointer-events-none transition-all duration-300">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="text-display font-display text-slate-900">Employee Roster</h1>
+<p class="text-body-md font-body-md text-slate-600 mt-sm">Manage compensation and organizational hierarchy.</p>
+</div>
+</div>
+<div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+<div class="grid grid-cols-12 gap-gutter p-md bg-slate-50 border-b border-slate-200">
+<div class="col-span-3 font-label-md text-label-md text-slate-500 uppercase tracking-wider">Employee</div>
+<div class="col-span-3 font-label-md text-label-md text-slate-500 uppercase tracking-wider">Role</div>
+<div class="col-span-2 font-label-md text-label-md text-slate-500 uppercase tracking-wider">Base Salary</div>
+<div class="col-span-2 font-label-md text-label-md text-slate-500 uppercase tracking-wider">Status</div>
+<div class="col-span-2 font-label-md text-label-md text-slate-500 uppercase tracking-wider text-right">Actions</div>
+</div>
+<!-- Dummy rows -->
+<div class="grid grid-cols-12 gap-gutter p-md border-b border-slate-200 bg-white hover:bg-slate-50">
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-slate-200"></div>
+<span class="font-body-md text-body-md text-slate-900">Sarah Jenkins</span>
+</div>
+<div class="col-span-3 flex items-center font-body-sm text-body-sm text-slate-600">VP Engineering</div>
+<div class="col-span-2 flex items-center font-body-md text-body-md text-slate-900">$245,000</div>
+<div class="col-span-2 flex items-center"><span class="px-2 py-1 rounded-DEFAULT bg-green-100 text-green-700 font-label-sm text-label-sm">Active</span></div>
+<div class="col-span-2 flex items-center justify-end"><span class="material-symbols-outlined text-slate-400">more_vert</span></div>
+</div>
+<div class="grid grid-cols-12 gap-gutter p-md border-b border-slate-200 bg-blue-50 border-l-2 border-l-blue-600">
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-slate-200"></div>
+<span class="font-body-md text-body-md text-slate-900">Marcus Chen</span>
+</div>
+<div class="col-span-3 flex items-center font-body-sm text-body-sm text-slate-600">Senior Product Designer</div>
+<div class="col-span-2 flex items-center font-body-md text-body-md text-slate-900">$162,500</div>
+<div class="col-span-2 flex items-center"><span class="px-2 py-1 rounded-DEFAULT bg-green-100 text-green-700 font-label-sm text-label-sm">Active</span></div>
+<div class="col-span-2 flex items-center justify-end"><span class="material-symbols-outlined text-slate-400">more_vert</span></div>
+</div>
+<div class="grid grid-cols-12 gap-gutter p-md border-b border-slate-200 bg-white hover:bg-slate-50">
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-slate-200"></div>
+<span class="font-body-md text-body-md text-slate-900">Elena Rodriguez</span>
+</div>
+<div class="col-span-3 flex items-center font-body-sm text-body-sm text-slate-600">Data Scientist</div>
+<div class="col-span-2 flex items-center font-body-md text-body-md text-slate-900">$148,000</div>
+<div class="col-span-2 flex items-center"><span class="px-2 py-1 rounded-DEFAULT bg-green-100 text-green-700 font-label-sm text-label-sm">Active</span></div>
+<div class="col-span-2 flex items-center justify-end"><span class="material-symbols-outlined text-slate-400">more_vert</span></div>
+</div>
+</div>
+</div>
+<!-- Overlay Background for Slide-over -->
+<div class="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] z-40 transition-opacity"></div>
+<!-- Slide-over Sheet (Right Drawer) -->
+<div class="absolute top-0 right-0 h-full w-full max-w-lg bg-white border-l border-slate-200 shadow-[-8px_0_24px_rgba(0,0,0,0.1)] z-50 flex flex-col transform transition-transform duration-300 ease-in-out translate-x-0">
+<!-- Drawer Header -->
+<div class="px-lg py-md border-b border-slate-200 flex justify-between items-start bg-white">
+<div class="flex gap-md items-center">
+<div class="w-12 h-12 rounded-DEFAULT overflow-hidden border border-slate-200 shrink-0">
+<img alt="Employee Photo" class="w-full h-full object-cover" data-alt="A sharp corporate portrait of an Asian male professional in a modern dark-themed office setting, subtle rim lighting, shallow depth of field, high-end enterprise aesthetic, muted color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD630rM1nlpJdFlLdxImzhK-cJnnF9BQvXKGvTLkWvyp-HRduQlBkAChPE5Zak_9kn85q1jbu1hVZhjwCHq4Hl8ag216LQFpdpexrNAt3xUu2_QmmxfJ1QM6TgleRXMSSyYuIq9AQkhYzSbUOS7xeLXpf7CkPUqgHETmJrrkyOBCS3nlAbIpNl86l8GD-hYsz-BQ_I6rhG25MzTnWI9A0oT4hXvCdWYwfNvjnYDOf1zKgNTRIZCweWc3w"/>
+</div>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-slate-900 m-0 leading-tight">Marcus Chen</h2>
+<p class="font-body-sm text-body-sm text-slate-600 m-0">Senior Product Designer • ID: EMP-0942</p>
+</div>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT text-slate-500 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content -->
+<div class="flex-1 overflow-y-auto p-lg bg-slate-50">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-md text-headline-md text-slate-900">Compensation History</h3>
+<button class="px-sm py-xs border border-slate-200 rounded-DEFAULT bg-white text-slate-700 font-label-sm text-label-sm flex items-center gap-xs hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span> Export
+                        </button>
+</div>
+<!-- Current Comp Summary Card -->
+<div class="bg-white border border-slate-200 rounded-lg p-md mb-xl shadow-sm">
+<div class="grid grid-cols-2 gap-md">
+<div>
+<span class="block font-label-sm text-label-sm text-slate-500 uppercase tracking-wider mb-xs">Current Base Salary</span>
+<span class="block font-headline-lg text-headline-lg text-blue-600">$162,500 <span class="font-body-sm text-body-sm text-slate-500">USD / yr</span></span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-slate-500 uppercase tracking-wider mb-xs">Next Review Date</span>
+<span class="block font-body-lg text-body-lg text-slate-900 font-medium">Oct 15, 2024</span>
+</div>
+</div>
+</div>
+<!-- Timeline -->
+<div class="relative before:absolute before:inset-y-0 before:left-[19px] before:w-[2px] before:bg-slate-200 ml-sm">
+<!-- Timeline Item 1 (Most Recent) -->
+<div class="relative flex gap-md mb-lg">
+<div class="w-10 h-10 rounded-full bg-blue-50 border-2 border-blue-600 flex items-center justify-center shrink-0 z-10 relative">
+<span class="material-symbols-outlined text-blue-600 text-[20px]">trending_up</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-xs">
+<span class="font-label-md text-label-md text-blue-700 bg-blue-100 px-2 py-0.5 rounded-sm">Promotion</span>
+<span class="font-label-sm text-label-sm text-slate-500">Oct 15, 2023</span>
+</div>
+<div class="bg-white border border-slate-200 rounded-lg p-sm mt-sm hover:bg-slate-50 transition-colors shadow-sm">
+<div class="flex justify-between items-baseline mb-sm border-b border-slate-100 pb-sm">
+<span class="font-body-lg text-body-lg text-slate-900 font-semibold">$162,500 <span class="font-body-sm text-body-sm text-emerald-600 font-semibold ml-xs">+18.2%</span></span>
+<span class="font-body-sm text-body-sm text-slate-400 line-through">$137,500</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-600 m-0">Promoted to Senior Product Designer. Expanded responsibilities to lead the enterprise design system initiative.</p>
+<div class="mt-sm flex gap-sm">
+<div class="flex items-center gap-xs font-label-sm text-label-sm text-slate-500">
+<span class="material-symbols-outlined text-[14px]">account_circle</span> Auth: S. Jenkins
+                                        </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative flex gap-md mb-lg">
+<div class="w-10 h-10 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center shrink-0 z-10 relative">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">sync</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-xs">
+<span class="font-label-md text-label-md text-slate-700 bg-white px-2 py-0.5 rounded-sm border border-slate-200">Annual Review</span>
+<span class="font-label-sm text-label-sm text-slate-500">Jan 01, 2023</span>
+</div>
+<div class="bg-white border border-slate-200 rounded-lg p-sm mt-sm hover:bg-slate-50 transition-colors shadow-sm">
+<div class="flex justify-between items-baseline mb-sm border-b border-slate-100 pb-sm">
+<span class="font-body-lg text-body-lg text-slate-900 font-semibold">$137,500 <span class="font-body-sm text-body-sm text-emerald-600 font-semibold ml-xs">+5.7%</span></span>
+<span class="font-body-sm text-body-sm text-slate-400 line-through">$130,000</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-600 m-0">Standard annual cost of living and merit increase based on 'Exceeds Expectations' performance rating.</p>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 (Initial Hire) -->
+<div class="relative flex gap-md">
+<div class="w-10 h-10 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center shrink-0 z-10 relative">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">flag</span>
+</div>
+<div class="flex-1 pt-1">
+<div class="flex justify-between items-start mb-xs">
+<span class="font-label-md text-label-md text-slate-700 bg-white px-2 py-0.5 rounded-sm border border-slate-200">New Hire</span>
+<span class="font-label-sm text-label-sm text-slate-500">Mar 12, 2021</span>
+</div>
+<div class="bg-white border border-slate-200 rounded-lg p-sm mt-sm hover:bg-slate-50 transition-colors shadow-sm">
+<div class="flex justify-between items-baseline mb-sm border-b border-slate-100 pb-sm">
+<span class="font-body-lg text-body-lg text-slate-900 font-semibold">$130,000</span>
+<span class="font-body-sm text-body-sm text-slate-500">Starting Base</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-600 m-0">Hired as Mid-Level Product Designer. Included $10k sign-on bonus (paid separately).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Footer -->
+<div class="p-md border-t border-slate-200 bg-white flex justify-end gap-sm">
+<button class="px-md py-sm rounded-DEFAULT border border-slate-200 bg-white text-slate-700 font-label-md text-label-md hover:bg-slate-50 transition-colors">
+                        Close
+                    </button>
+<button class="px-md py-sm rounded-DEFAULT bg-blue-600 text-white font-label-md text-label-md hover:bg-blue-700 transition-colors shadow-sm">
+                        Propose Adjustment
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>
