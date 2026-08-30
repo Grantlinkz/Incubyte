@@ -95,6 +95,7 @@ SQLite by default can lock during simultaneous reads and writes. To achieve high
   - `AUD`: 0.66
   - `SGD`: 0.75
   - `JPY`: 0.0067
+  - `NGN`: 0.00067
 - Normalization formula: `salary_usd = (base_salary + (bonus or 0)) * FX_RATES[currency]`
 - `salary_usd` is stored directly on the row, indexed, and used for all analytics and sorting.
 
