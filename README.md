@@ -16,6 +16,25 @@
 
 ---
 
+## 📸 Demo Look
+
+<table>
+  <tr>
+    <th align="center" width="25%">☀️ Home (Light)</th>
+    <th align="center" width="25%">🌙 Home (Dark)</th>
+    <th align="center" width="25%">☀️ Employee (Light)</th>
+    <th align="center" width="25%">🌙 Employee (Dark)</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="Demo Look/Home Light.png" alt="Home Light" width="100%" /></td>
+    <td align="center"><img src="Demo Look/Home Dark.png" alt="Home Dark" width="100%" /></td>
+    <td align="center"><img src="Demo Look/Employee Light.png" alt="Employee Light" width="100%" /></td>
+    <td align="center"><img src="Demo Look/Employee Dark.png" alt="Employee Dark" width="100%" /></td>
+  </tr>
+</table>
+
+---
+
 ## 📌 Executive Summary
 
 The **ACME Global Salary Management Platform** is a full-stack, high-performance web application designed to bring clarity, speed, and governance to global payroll operations. Managing international compensation across offices in the United States, United Kingdom, Germany, Canada, Japan, India, and beyond involves multi-currency volatility, complex departmental allocations, and slow spreadsheet updates.
@@ -48,7 +67,7 @@ graph TB
         CORS["CORS & Content-Disposition Middleware"]
         RouterEmp["/api/v1/employees (CRUD, Faceted Search, Stream CSV)"]
         RouterAna["/api/v1/analytics (KPI Summary, Dept & Country Aggregations)"]
-        
+
         ServiceEmp["Employee Service (Business Logic, Pagination, Soft Deletes)"]
         ServiceAna["Analytics Service (Exact Medians & High-Perf SQL Aggregation)"]
         FX["Deterministic FX Matrix (Static USD/EUR/GBP Normalization)"]
@@ -68,7 +87,7 @@ graph TB
     Charts --> State
     Grid --> State
     State -->|HTTP / JSON Axios| CORS
-    
+
     CORS --> RouterEmp
     CORS --> RouterAna
     RouterEmp --> Pydantic
@@ -84,13 +103,13 @@ graph TB
 
 ## ✨ Key Features & Highlights
 
-| Domain                                  | Key Capabilities                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| :-------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 📊**Compensation Analytics**      | • Real-time KPI metrics strip (Total Payroll, Avg Base, Exact Median, Active Headcount).• Departmental expenditure bar charts with interactive hover cards.• Geographic headcount density and spend distribution maps across operating countries.                                                                                                                                                                                                                                                                                                                          |
-| ⚡**High-Density Data Grid**      | • Server-side manual pagination, multi-column sorting, and faceted multi-filtering.• 300ms debounced global full-text search across employee names, titles, and emails.• Zero-CLS skeleton loaders, empty state recovery, and isolated error boundaries.                                                                                                                                                                                                                                                                                                                   |
-| 💱**Dual-Currency Normalization** | • Renders native local pay (`£75,000 + £5,000`) beside normalized benchmarks (`$98,250 USD`).• Global header currency switcher toggling normalized display across `USD ($)`, `EUR (€)`, and `GBP (£)`.• Deterministic static FX lookup matrix guaranteeing zero network lag or third-party API failures.                                                                                                                                                                                                                                                     |
-| 🛠️**HR Lifecycle Workflows**    | •**Add / Edit Modal**: Two-column responsive form powered by React Hook Form + Zod.• **Live Salary Diff Preview**: Instant visual preview of percentage and absolute pay adjustments (e.g., `$120,000 → $135,000 (+12.5%)`).• **Salary History Drawer**: Chronological audit trail showing past compensation changes.• **Batch CSV Ingestion**: Drag-and-drop file upload with 5-row schema preview prior to persistence.• **Soft-Delete with Rollback**: Destructive alert confirmation with optimistic UI removal and toast rollback. |
-| 🚀**Performance & Reliability**   | •**SQLite Concurrency**: Write-Ahead Logging (`PRAGMA journal_mode=WAL;`) with 5000ms busy timeout.• **Streaming CSV Export**: Chunked generator stream without in-memory buffering.• **High-Cardinality Indexes**: Composite indices on `(department, is_deleted)`, `(country, is_deleted)`, and `salary_usd`.                                                                                                                                                                                                                                  |
+| Domain                            | Key Capabilities                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| :-------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 📊**Compensation Analytics**      | • Real-time KPI metrics strip (Total Payroll, Avg Base, Exact Median, Active Headcount).• Departmental expenditure bar charts with interactive hover cards.• Geographic headcount density and spend distribution maps across operating countries.                                                                                                                                                                                                                                                                                       |
+| ⚡**High-Density Data Grid**      | • Server-side manual pagination, multi-column sorting, and faceted multi-filtering.• 300ms debounced global full-text search across employee names, titles, and emails.• Zero-CLS skeleton loaders, empty state recovery, and isolated error boundaries.                                                                                                                                                                                                                                                                                |
+| 💱**Dual-Currency Normalization** | • Renders native local pay (`£75,000 + £5,000`) beside normalized benchmarks (`$98,250 USD`).• Global header currency switcher toggling normalized display across `USD ($)`, `EUR (€)`, and `GBP (£)`.• Deterministic static FX lookup matrix guaranteeing zero network lag or third-party API failures.                                                                                                                                                                                                                                |
+| 🛠️**HR Lifecycle Workflows**      | •**Add / Edit Modal**: Two-column responsive form powered by React Hook Form + Zod.• **Live Salary Diff Preview**: Instant visual preview of percentage and absolute pay adjustments (e.g., `$120,000 → $135,000 (+12.5%)`).• **Salary History Drawer**: Chronological audit trail showing past compensation changes.• **Batch CSV Ingestion**: Drag-and-drop file upload with 5-row schema preview prior to persistence.• **Soft-Delete with Rollback**: Destructive alert confirmation with optimistic UI removal and toast rollback. |
+| 🚀**Performance & Reliability**   | •**SQLite Concurrency**: Write-Ahead Logging (`PRAGMA journal_mode=WAL;`) with 5000ms busy timeout.• **Streaming CSV Export**: Chunked generator stream without in-memory buffering.• **High-Cardinality Indexes**: Composite indices on `(department, is_deleted)`, `(country, is_deleted)`, and `salary_usd`.                                                                                                                                                                                                                         |
 
 ---
 
@@ -215,18 +234,18 @@ npm run dev
 
 ## 📡 API Specification Summary
 
-| Method     | Endpoint                          | Description                                        | Query Parameters / Highlights                                                                                           |
-| :--------- | :-------------------------------- | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
-| `GET`    | `/health`                       | Application health and database connectivity check | —                                                                                                                      |
+| Method   | Endpoint                        | Description                                        | Query Parameters / Highlights                                                                         |
+| :------- | :------------------------------ | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------- |
+| `GET`    | `/health`                       | Application health and database connectivity check | —                                                                                                     |
 | `GET`    | `/api/v1/employees`             | Paginated, filtered, and sorted employee dataset   | `page`, `page_size`, `search`, `department`, `country`, `status`, `currency`, `sort_by`, `sort_order` |
-| `POST`   | `/api/v1/employees`             | Create a new employee record                       | Validated JSON payload with automatic FX normalization                                                                  |
-| `GET`    | `/api/v1/employees/{id}`        | Retrieve individual employee details               | Returns 404 for deleted or non-existent records                                                                         |
-| `PUT`    | `/api/v1/employees/{id}`        | Update existing employee record                    | Recalculates normalized`salary_usd` on compensation edits                                                             |
-| `DELETE` | `/api/v1/employees/{id}`        | Soft-delete employee                               | Sets`is_deleted = true`, preserving historic audit integrity                                                          |
-| `GET`    | `/api/v1/employees/export/csv`  | Memory-efficient streaming CSV export              | Honors active search and faceted filter parameters                                                                      |
-| `GET`    | `/api/v1/analytics/summary`     | Organization-wide compensation KPIs                | Total payroll, average salary, exact median, active count                                                               |
-| `GET`    | `/api/v1/analytics/departments` | Departmental compensation & headcount metrics      | Aggregated total spend and average salary per department                                                                |
-| `GET`    | `/api/v1/analytics/countries`   | Geographic spend distribution & density            | Country-level headcount and total payroll breakdown                                                                     |
+| `POST`   | `/api/v1/employees`             | Create a new employee record                       | Validated JSON payload with automatic FX normalization                                                |
+| `GET`    | `/api/v1/employees/{id}`        | Retrieve individual employee details               | Returns 404 for deleted or non-existent records                                                       |
+| `PUT`    | `/api/v1/employees/{id}`        | Update existing employee record                    | Recalculates normalized`salary_usd` on compensation edits                                             |
+| `DELETE` | `/api/v1/employees/{id}`        | Soft-delete employee                               | Sets`is_deleted = true`, preserving historic audit integrity                                          |
+| `GET`    | `/api/v1/employees/export/csv`  | Memory-efficient streaming CSV export              | Honors active search and faceted filter parameters                                                    |
+| `GET`    | `/api/v1/analytics/summary`     | Organization-wide compensation KPIs                | Total payroll, average salary, exact median, active count                                             |
+| `GET`    | `/api/v1/analytics/departments` | Departmental compensation & headcount metrics      | Aggregated total spend and average salary per department                                              |
+| `GET`    | `/api/v1/analytics/countries`   | Geographic spend distribution & density            | Country-level headcount and total payroll breakdown                                                   |
 
 ---
 
@@ -267,7 +286,7 @@ This project was built through a collaborative, spec-driven engineering methodol
 - **GrantLinkz** — *Project Lead & Software Engineer*Directed system architecture, product specification, technical requirements, code curation, and end-to-end implementation across backend and frontend domains.
 - **Incubyte** — *Project Organization & Evaluation*Provided the technical assessment framework, real-world business context, evaluation criteria, and organizational problem statement.
 - **Antigravity IDE with Gemini** — *Autonomous AI Agentic Pair Programmer & Technical Co-Pilot*Collaborated on spec-driven architectural design, implementation workflows, boilerplate generation, high-density component engineering, and end-to-end automated test suites.
-- **CodeRabbit** — *Automated AI Code Reviewer*
+- **CodeRabbit** — _Automated AI Code Reviewer_
   Provided continuous automated code reviews, catching edge cases, enforcing best practices, and ensuring strict compliance with engineering standards.
 
 ---
